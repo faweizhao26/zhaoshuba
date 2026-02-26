@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>找书吧｜电子书资源与阅读工具导航</title>
+    <meta
+      name="description"
+      content="找书吧：聚合电子书下载、在线阅读、书单推荐、学术期刊与阅读工具的书籍导航站。"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-circle bg-circle-1"></div>
+    <div class="bg-circle bg-circle-2"></div>
+    <div class="container">
+      <div class="layout">
+        <aside class="sidebar">
+          <div class="sidebar-card">
+            <div class="sidebar-head">
+              <div>
+                <h2>资源分类</h2>
+              </div>
+              <button
+                id="sidebarToggle"
+                class="sidebar-toggle"
+                type="button"
+                aria-label="收起目录"
+                title="收起目录"
+              >
+                ⮜
+              </button>
+            </div>
+            <nav id="sidebarNav" class="sidebar-nav" aria-label="左侧目录"></nav>
+          </div>
+        </aside>
+
+        <div class="content">
+          <header class="hero">
+            <button id="themeToggle" class="theme-btn theme-corner" type="button">🌙 深色</button>
+            <div class="hero-title">
+              <span class="badge">ZHAOSHUBA</span>
+              <div class="hero-brand">
+                <span class="logo-mark" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" focusable="false">
+                    <path d="M4.5 5.5c2-1 5-1 7 0v13c-2-1-5-1-7 0z" />
+                    <path d="M19.5 5.5c-2-1-5-1-7 0v13c2-1 5-1 7 0z" />
+                    <path d="M12 5.5v13" />
+                  </svg>
+                </span>
+                <h1>找书吧</h1>
+              </div>
+              <p>电子书资源与阅读工具导航</p>
+            </div>
+            <div class="hero-actions">
+              <label class="search-box" aria-label="搜索资源">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M10.5 3a7.5 7.5 0 0 1 5.997 11.998l4.252 4.252-1.5 1.5-4.252-4.252A7.5 7.5 0 1 1 10.5 3m0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11"
+                  />
+                </svg>
+                <input
+                  id="searchInput"
+                  type="search"
+                  placeholder="搜索网站、简介、分类、标签（按 / 快捷聚焦）"
+                  autocomplete="off"
+                />
+              </label>
+              <a class="action-btn feedback-entry" href="#feedback">提交站点</a>
+            </div>
+            <nav id="categoryBar" class="category-bar" aria-label="资源分类"></nav>
+          </header>
+
+          <section class="overview">
+            <article class="overview-card">
+              <span id="totalCount">0</span>
+              <small>收录站点</small>
+            </article>
+            <article class="overview-card">
+              <span id="visibleCount">0</span>
+              <small>当前结果</small>
+            </article>
+            <article class="overview-card">
+              <span id="categoryCount">0</span>
+              <small>分类数量</small>
+            </article>
+            <button id="resetFilterBtn" class="reset-btn" type="button">清空筛选</button>
+          </section>
+
+          <main>
+            <div id="sectionsRoot" class="sections-root"></div>
+            <p id="emptyState" class="empty-state" hidden>
+              没有找到匹配内容，换个关键词试试。
+            </p>
+          </main>
+
+          <section id="feedback" class="category-section feedback">
+            <div class="feedback-head">
+              <div>
+                <h2>提交站点</h2>
+                <p>欢迎推荐优质电子书/阅读资源，我们会尽快审核并收录。</p>
+              </div>
+              <a
+                class="action-btn feedback-link"
+                href="mailto:felix080926@gmail.com?subject=%E6%89%BE%E4%B9%A6%E5%90%A7%20%E7%AB%99%E7%82%B9%E6%8E%A8%E8%8D%90"
+                >邮件反馈</a
+              >
+            </div>
+            <div class="feedback-body">
+              <div class="feedback-hint">请包含以下信息：</div>
+              <ul class="feedback-list">
+                <li>站点名称 + 链接</li>
+                <li>所属分类</li>
+                <li>一句简介</li>
+                <li>标签（可选）</li>
+              </ul>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <section class="donation" id="donationCard" aria-label="赞助支持">
+        <button class="donation-close" type="button" aria-label="关闭赞助卡片" title="关闭">
+          ✕
+        </button>
+        <span class="donation-badge">支付宝赞助二维码</span>
+        <div class="donation-media">
+          <img src="assets/alipay-qr-v2.jpg" alt="支付宝赞助二维码" />
+        </div>
+        <p>整理不易，免费开放，欢迎赞助一杯咖啡。</p>
+      </section>
+
+      <footer class="footer">© 找书吧 · 可直接部署到 GitHub Pages / Vercel</footer>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
