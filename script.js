@@ -1,4 +1,4 @@
-const CATEGORY_ORDER = [
+const CATEGORY_ORDER_ZH = [
   "电子书下载",
   "电子书在线阅读",
   "书单/书籍推荐",
@@ -9,7 +9,7 @@ const CATEGORY_ORDER = [
   "阅读软件/工具",
 ];
 
-const CATEGORY_ICON = {
+const CATEGORY_ICON_ZH = {
   电子书下载: "📥",
   电子书在线阅读: "📖",
   "书单/书籍推荐": "🧭",
@@ -20,7 +20,7 @@ const CATEGORY_ICON = {
   "阅读软件/工具": "🛠️",
 };
 
-const BUILTIN_SITES = [
+const BUILTIN_SITES_ZH = [
   {
     title: "Z-Library",
     url: "https://z-library.la/",
@@ -429,17 +429,564 @@ const BUILTIN_SITES = [
   },
 ];
 
+const CATEGORY_ORDER_EN = [
+  "Ebook Downloads",
+  "Online Reading",
+  "Book Lists & Recommendations",
+  "Magazines & Comics",
+  "Academic Journals",
+  "Classical Texts",
+  "Audiobooks",
+  "Reading Tools",
+];
+
+const CATEGORY_ICON_EN = {
+  "Ebook Downloads": "📥",
+  "Online Reading": "📖",
+  "Book Lists & Recommendations": "🧭",
+  "Magazines & Comics": "📰",
+  "Academic Journals": "🧪",
+  "Classical Texts": "🏛️",
+  Audiobooks: "🎧",
+  "Reading Tools": "🛠️",
+};
+
+const BUILTIN_SITES_EN = [
+  {
+    title: "Z-Library",
+    url: "https://z-library.la/",
+    category: "Ebook Downloads",
+    desc: "Large ebook collection with multiple formats.",
+    tags: ["Chinese/English", "EPUB/MOBI/AZW3/PDF"],
+  },
+  {
+    title: "Anna's Archive",
+    url: "https://zh.annas-archive.li/",
+    category: "Ebook Downloads",
+    desc: "The largest fully open library in human history.",
+    tags: ["Chinese/English", "EPUB"],
+  },
+  {
+    title: "Liber3",
+    url: "https://liber3.eth.limo/#/",
+    category: "Ebook Downloads",
+    desc: "Massive ebook library.",
+    tags: ["Chinese/English", "EPUB"],
+  },
+  {
+    title: "Xiaolipan Search",
+    url: "https://www.xiaolipan.com/index.html",
+    category: "Ebook Downloads",
+    desc: "Large ebook collection with multiple formats.",
+    tags: ["Chinese/English", "EPUB/PDF"],
+  },
+  {
+    title: "24h Book Search",
+    url: "https://24hbook.store/",
+    category: "Ebook Downloads",
+    desc: "Massive ebook collection.",
+    tags: ["Chinese/English", "EPUB"],
+  },
+  {
+    title: "Nameless Books",
+    url: "https://www.book345.com/",
+    category: "Ebook Downloads",
+    desc: "Massive ebook collection.",
+    tags: ["Chinese/English", "EPUB"],
+  },
+  {
+    title: "Book Knowledge Base",
+    url: "https://www.zhishikoo.com/",
+    category: "Ebook Downloads",
+    desc: "Large ebook collection with multiple formats.",
+    tags: ["Chinese/English", "EPUB/MOBI/AZW3/PDF"],
+  },
+  {
+    title: "Project Gutenberg",
+    url: "https://www.gutenberg.org/",
+    category: "Ebook Downloads",
+    desc: "Public domain ebooks with multiple formats.",
+    tags: ["Public domain", "English", "EPUB"],
+  },
+  {
+    title: "Standard Ebooks",
+    url: "https://standardebooks.org/",
+    category: "Ebook Downloads",
+    desc: "High-quality typeset classics for free.",
+    tags: ["Public domain", "Typesetting", "EPUB"],
+  },
+  {
+    title: "ManyBooks",
+    url: "https://manybooks.net/",
+    category: "Ebook Downloads",
+    desc: "Free and discounted ebooks for download and discovery.",
+    tags: ["Free", "Fiction", "Downloads"],
+  },
+  {
+    title: "OpenStax",
+    url: "https://openstax.org/subjects",
+    category: "Ebook Downloads",
+    desc: "Open textbook resources for learning and teaching.",
+    tags: ["Textbooks", "Learning", "PDF"],
+  },
+  {
+    title: "Internet Archive Texts",
+    url: "https://archive.org/details/texts",
+    category: "Ebook Downloads",
+    desc: "Internet Archive texts collection across languages.",
+    tags: ["Archive", "History", "PDF"],
+  },
+  {
+    title: "Open Library",
+    url: "https://openlibrary.org/",
+    category: "Online Reading",
+    desc: "Borrow and read millions of books online.",
+    tags: ["Online reading", "Lending", "English"],
+  },
+  {
+    title: "Google Books",
+    url: "https://books.google.com/",
+    category: "Online Reading",
+    desc: "Search books with limited online previews.",
+    tags: ["Search", "Preview", "Multilingual"],
+  },
+  {
+    title: "Wikisource",
+    url: "https://wikisource.org/",
+    category: "Online Reading",
+    desc: "Open text library for online reading.",
+    tags: ["Library", "Public domain", "Online"],
+  },
+  {
+    title: "Douban Read",
+    url: "https://read.douban.com/",
+    category: "Online Reading",
+    desc: "Chinese bookstore and original works platform.",
+    tags: ["Chinese", "Original", "Bookstore"],
+  },
+  {
+    title: "WeChat Read (Web)",
+    url: "https://weread.qq.com/",
+    category: "Online Reading",
+    desc: "WeChat Read web app with notes and highlights.",
+    tags: ["Chinese", "Notes", "Reading"],
+  },
+  {
+    title: "Internet Archive BookReader",
+    url: "https://archive.org/details/books",
+    category: "Online Reading",
+    desc: "Online reader for Internet Archive books and documents.",
+    tags: ["Online reading", "Archive", "Multilingual"],
+  },
+  {
+    title: "Douban Books",
+    url: "https://book.douban.com/",
+    category: "Book Lists & Recommendations",
+    desc: "Chinese reviews, lists, and popular picks.",
+    tags: ["Reviews", "Ratings", "Recommendations"],
+  },
+  {
+    title: "Book List Weekly",
+    url: "https://mp.weixin.qq.com/s/wy9VRewPCOxzJwto3zHehw",
+    category: "Book Lists & Recommendations",
+    desc: "Chinese reviews, lists, and popular picks.",
+    tags: ["Reviews", "Ratings", "Recommendations"],
+  },
+  {
+    title: "Goodreads",
+    url: "https://www.goodreads.com/",
+    category: "Book Lists & Recommendations",
+    desc: "Global reading community for English book lists.",
+    tags: ["English", "Community", "Ratings"],
+  },
+  {
+    title: "The StoryGraph",
+    url: "https://app.thestorygraph.com/",
+    category: "Book Lists & Recommendations",
+    desc: "Visualized reading preferences and recommendations.",
+    tags: ["Recommendations", "Visualization", "Community"],
+  },
+  {
+    title: "Fantastic Fiction",
+    url: "https://www.fantasticfiction.com/",
+    category: "Book Lists & Recommendations",
+    desc: "Discover books by author and series.",
+    tags: ["Fiction", "Authors", "Series"],
+  },
+  {
+    title: "What Should I Read Next",
+    url: "https://www.whatshouldireadnext.com/",
+    category: "Book Lists & Recommendations",
+    desc: "Enter a book to find similar reads.",
+    tags: ["Recommendations", "Discovery", "English"],
+  },
+  {
+    title: "MangaDex",
+    url: "https://mangadex.org/",
+    category: "Magazines & Comics",
+    desc: "Multilingual manga reading and update tracking.",
+    tags: ["Manga", "Multilingual", "Online"],
+  },
+  {
+    title: "ComicWalker",
+    url: "https://comic-walker.com/",
+    category: "Magazines & Comics",
+    desc: "Official Japanese manga platform (some free).",
+    tags: ["Manga", "Official", "Online"],
+  },
+  {
+    title: "Tencent Comics",
+    url: "https://ac.qq.com/",
+    category: "Magazines & Comics",
+    desc: "Chinese and Japanese comics platform.",
+    tags: ["Comics", "Chinese", "Serials"],
+  },
+  {
+    title: "Bilibili Manga",
+    url: "https://manga.bilibili.com/",
+    category: "Magazines & Comics",
+    desc: "Chinese and Japanese comics platform.",
+    tags: ["Comics", "Chinese", "Serials"],
+  },
+  {
+    title: "Manhuagui",
+    url: "https://www.manhuagui.com/",
+    category: "Magazines & Comics",
+    desc: "Comics aggregation platform.",
+    tags: ["Comics", "Chinese", "Updates"],
+  },
+  {
+    title: "October Magazine",
+    url: "https://shiyuezazhi.com/sy/index.html",
+    category: "Magazines & Comics",
+    desc: "Large literary magazine.",
+    tags: ["Magazine", "Chinese", "Literature"],
+  },
+  {
+    title: "Chinese National Geography",
+    url: "https://www.dili360.com/Cng/index/index.htm",
+    category: "Magazines & Comics",
+    desc: "Popular science magazine.",
+    tags: ["Magazine", "Chinese", "Geography"],
+  },
+  {
+    title: "Natural History",
+    url: "https://www.dili360.com/nh/mag/detail/1001.htm",
+    category: "Magazines & Comics",
+    desc: "Popular science magazine.",
+    tags: ["Magazine", "Chinese", "Biology"],
+  },
+  {
+    title: "Google Scholar",
+    url: "https://scholar.google.com/",
+    category: "Academic Journals",
+    desc: "Academic search engine across disciplines.",
+    tags: ["Papers", "Search", "Academic"],
+  },
+  {
+    title: "DOAJ",
+    url: "https://doaj.org/",
+    category: "Academic Journals",
+    desc: "Directory of Open Access Journals.",
+    tags: ["Open access", "OA", "Academic"],
+  },
+  {
+    title: "JSTOR Open Content",
+    url: "https://about.jstor.org/oa-and-free/",
+    category: "Academic Journals",
+    desc: "JSTOR open content resources.",
+    tags: ["Journals", "Humanities", "Open"],
+  },
+  {
+    title: "PubMed",
+    url: "https://pubmed.ncbi.nlm.nih.gov/",
+    category: "Academic Journals",
+    desc: "Biomedical literature database.",
+    tags: ["Medicine", "Search", "Papers"],
+  },
+  {
+    title: "arXiv",
+    url: "https://arxiv.org/",
+    category: "Academic Journals",
+    desc: "Preprint platform widely used in STEM.",
+    tags: ["Preprints", "STEM", "Research"],
+  },
+  {
+    title: "Semantic Scholar",
+    url: "https://www.semanticscholar.org/",
+    category: "Academic Journals",
+    desc: "AI-powered paper search and citation analysis.",
+    tags: ["AI", "Citations", "Academic"],
+  },
+  {
+    title: "Chinese Text Project",
+    url: "https://ctext.org/zhs",
+    category: "Classical Texts",
+    desc: "Search and read Chinese classics online.",
+    tags: ["Classics", "Chinese", "Search"],
+  },
+  {
+    title: "Han Dian Classics",
+    url: "https://gj.zdic.net/",
+    category: "Classical Texts",
+    desc: "Handian classics and classical Chinese tools.",
+    tags: ["Classical Chinese", "Tools", "Handian"],
+  },
+  {
+    title: "Chinese Classics Database (Info)",
+    url: "https://www.ancientbooks.cn/",
+    category: "Classical Texts",
+    desc: "Portal and news for digitized classics.",
+    tags: ["Classics", "Digitization", "Resources"],
+  },
+  {
+    title: "Wikisource Classics",
+    url: "https://zh.wikisource.org/",
+    category: "Classical Texts",
+    desc: "Chinese classics on Wikisource.",
+    tags: ["Classics", "Open", "Online"],
+  },
+  {
+    title: "Chinese Ancient Books Resources",
+    url: "https://www.nlc.cn/pcab/zy/zhgj_zyk/",
+    category: "Classical Texts",
+    desc: "Chinese classics preservation program.",
+    tags: ["Classics", "Open", "Online"],
+  },
+  {
+    title: "Handian Chongguang",
+    url: "https://wenyuan.aliyun.com/home",
+    category: "Classical Texts",
+    desc: "Digitized classics platform.",
+    tags: ["Classics", "Open", "Online"],
+  },
+  {
+    title: "Ximalaya",
+    url: "https://www.ximalaya.com/",
+    category: "Audiobooks",
+    desc: "Chinese audio platform with audiobooks.",
+    tags: ["Chinese", "Audiobooks", "Listening"],
+  },
+  {
+    title: "LRTS Audiobooks",
+    url: "https://www.lrts.me/",
+    category: "Audiobooks",
+    desc: "Chinese audiobook platform covering novels and knowledge.",
+    tags: ["Audiobooks", "Chinese", "Mobile"],
+  },
+  {
+    title: "WeChat Listen",
+    url: "https://at.qq.com/",
+    category: "Audiobooks",
+    desc: "Official WeChat audio platform.",
+    tags: ["Audiobooks", "Chinese", "Mobile"],
+  },
+  {
+    title: "Tomato Audiobooks",
+    url: "https://novelfm.changdunovel.com/",
+    category: "Audiobooks",
+    desc: "Toutiao audio platform.",
+    tags: ["Audiobooks", "Chinese", "Mobile"],
+  },
+  {
+    title: "LibriVox",
+    url: "https://librivox.org/",
+    category: "Audiobooks",
+    desc: "Volunteer-recorded public domain audiobooks.",
+    tags: ["Audiobooks", "Public domain", "Free"],
+  },
+  {
+    title: "Loyal Books",
+    url: "https://www.loyalbooks.com/",
+    category: "Audiobooks",
+    desc: "Classics with audiobooks and ebooks.",
+    tags: ["Classics", "Audiobooks", "Free"],
+  },
+  {
+    title: "Spotify Audiobooks",
+    url: "https://open.spotify.com/genre/audiobooks-page",
+    category: "Audiobooks",
+    desc: "Spotify audiobooks category.",
+    tags: ["Audiobooks", "Subscription", "English"],
+  },
+  {
+    title: "Audible",
+    url: "https://www.audible.com/",
+    category: "Audiobooks",
+    desc: "Amazon audiobook platform.",
+    tags: ["Audiobooks", "English", "Subscription"],
+  },
+  {
+    title: "Calibre",
+    url: "https://calibre-ebook.com/",
+    category: "Reading Tools",
+    desc: "All-in-one ebook manager, converter, and transfer tool.",
+    tags: ["Conversion", "Management", "Desktop"],
+  },
+  {
+    title: "Sigil",
+    url: "https://sigil-ebook.com/",
+    category: "Reading Tools",
+    desc: "EPUB editor for making ebooks.",
+    tags: ["EPUB", "Editing", "Creation"],
+  },
+  {
+    title: "Pandoc",
+    url: "https://pandoc.org/",
+    category: "Reading Tools",
+    desc: "Document conversion for Markdown, EPUB, and PDF.",
+    tags: ["Conversion", "CLI", "Formats"],
+  },
+  {
+    title: "CloudConvert",
+    url: "https://cloudconvert.com/",
+    category: "Reading Tools",
+    desc: "Online file conversion with ebook formats.",
+    tags: ["Online conversion", "Formats", "Tools"],
+  },
+  {
+    title: "Zamzar",
+    url: "https://www.zamzar.com/",
+    category: "Reading Tools",
+    desc: "Multi-format converter for quick tasks.",
+    tags: ["Online conversion", "Formats", "Easy"],
+  },
+  {
+    title: "Koodo Reader",
+    url: "https://www.koodoreader.com/",
+    category: "Reading Tools",
+    desc: "Cross-platform reader with notes and highlights.",
+    tags: ["Reader", "Cross-platform", "Notes"],
+  },
+];
+
+const LANGUAGES = {
+  zh: {
+    htmlLang: "zh-CN",
+    toggleLabel: "EN",
+    allLabel: "全部",
+    siteCountSuffix: " 个站点",
+    searchPlaceholder: "搜索网站、简介、分类、标签（按 / 快捷聚焦）",
+    searchAria: "搜索资源",
+    categoryBarAria: "资源分类",
+    sidebarAria: "左侧目录",
+    heroTitle: "找书吧",
+    heroSubtitle: "电子书资源与阅读工具导航",
+    sidebarTitle: "资源分类",
+    feedbackEntry: "提交站点",
+    emptyState: "没有找到匹配内容，换个关键词试试。",
+    overview: {
+      total: "收录站点",
+      visible: "当前结果",
+      categories: "分类数量",
+      reset: "清空筛选",
+    },
+    feedback: {
+      title: "提交站点",
+      desc: "欢迎推荐优质电子书/阅读资源，我们会尽快审核并收录。",
+      button: "邮件反馈",
+      hint: "请包含以下信息：",
+      items: ["站点名称 + 链接", "所属分类", "一句简介", "标签（可选）"],
+    },
+    donation: {
+      badge: "支付宝赞助二维码",
+      note: "整理不易，免费开放，欢迎赞助一杯咖啡。",
+      alt: "支付宝赞助二维码",
+      closeLabel: "关闭赞助卡片",
+      ariaLabel: "赞助支持",
+    },
+    themeToggle: {
+      light: "☀️ 浅色",
+      dark: "🌙 深色",
+    },
+    sidebarCollapse: "收起目录",
+    sidebarExpand: "展开目录",
+    meta: {
+      title: "找书吧｜电子书资源与阅读工具导航",
+      description:
+        "找书吧：聚合电子书下载、在线阅读、书单推荐、学术期刊与阅读工具的书籍导航站。",
+    },
+    categoryOrder: CATEGORY_ORDER_ZH,
+    categoryIcon: CATEGORY_ICON_ZH,
+    sites: BUILTIN_SITES_ZH,
+    noDesc: "暂无简介",
+    tagsFallback: "#书籍资源",
+  },
+  en: {
+    htmlLang: "en",
+    toggleLabel: "中文",
+    allLabel: "All",
+    siteCountSuffix: " sites",
+    searchPlaceholder:
+      "Search sites, summaries, categories, tags (press / to focus)",
+    searchAria: "Search resources",
+    categoryBarAria: "Categories",
+    sidebarAria: "Sidebar navigation",
+    heroTitle: "Zhaoshuba",
+    heroSubtitle: "Ebook resources and reading tools",
+    sidebarTitle: "Categories",
+    feedbackEntry: "Submit a Site",
+    emptyState: "No matching results. Try another keyword.",
+    overview: {
+      total: "Total Sites",
+      visible: "Results",
+      categories: "Categories",
+      reset: "Clear Filters",
+    },
+    feedback: {
+      title: "Submit a Site",
+      desc: "Share quality ebook or reading resources. We will review and add them.",
+      button: "Email Us",
+      hint: "Please include:",
+      items: [
+        "Site name + URL",
+        "Category",
+        "Short description",
+        "Tags (optional)",
+      ],
+    },
+    donation: {
+      badge: "Alipay Support QR",
+      note: "This project is free. If it helps, buy me a coffee.",
+      alt: "Alipay support QR code",
+      closeLabel: "Close support card",
+      ariaLabel: "Support",
+    },
+    themeToggle: {
+      light: "☀️ Light",
+      dark: "🌙 Dark",
+    },
+    sidebarCollapse: "Collapse categories",
+    sidebarExpand: "Expand categories",
+    meta: {
+      title: "Zhaoshuba | Ebook Resources and Reading Tools",
+      description:
+        "Zhaoshuba: a curated directory for ebook downloads, online reading, lists, journals, classics, audiobooks, and tools.",
+    },
+    categoryOrder: CATEGORY_ORDER_EN,
+    categoryIcon: CATEGORY_ICON_EN,
+    sites: BUILTIN_SITES_EN,
+    noDesc: "No description",
+    tagsFallback: "#books",
+  },
+};
+
 const STORAGE_KEYS = {
   theme: "book_nav_theme_v1",
   sidebarCollapsed: "book_nav_sidebar_collapsed_v1",
+  language: "book_nav_lang_v1",
 };
 
 const state = {
+  language: loadLanguage(),
   keyword: "",
-  activeCategory: "全部",
-  sidebarCategory: "全部",
+  activeCategory: "",
+  sidebarCategory: "",
   sidebarCollapsed: loadSidebarCollapsed(),
 };
+
+state.activeCategory = getAllLabel();
+state.sidebarCategory = getAllLabel();
 
 const scrollSpy = {
   sections: [],
@@ -449,7 +996,9 @@ const scrollSpy = {
 const refs = {
   layout: document.querySelector(".layout"),
   searchInput: document.getElementById("searchInput"),
+  searchLabel: document.getElementById("searchLabel"),
   themeToggle: document.getElementById("themeToggle"),
+  langToggle: document.getElementById("langToggle"),
   sidebarToggle: document.getElementById("sidebarToggle"),
   categoryBar: document.getElementById("categoryBar"),
   sidebarNav: document.getElementById("sidebarNav"),
@@ -458,16 +1007,35 @@ const refs = {
   totalCount: document.getElementById("totalCount"),
   visibleCount: document.getElementById("visibleCount"),
   categoryCount: document.getElementById("categoryCount"),
+  totalLabel: document.getElementById("totalLabel"),
+  visibleLabel: document.getElementById("visibleLabel"),
+  categoryLabel: document.getElementById("categoryLabel"),
   resetFilterBtn: document.getElementById("resetFilterBtn"),
+  heroTitle: document.getElementById("heroTitle"),
+  heroSubtitle: document.getElementById("heroSubtitle"),
+  sidebarTitle: document.getElementById("sidebarTitle"),
+  feedbackEntry: document.getElementById("feedbackEntry"),
+  feedbackTitle: document.getElementById("feedbackTitle"),
+  feedbackDesc: document.getElementById("feedbackDesc"),
+  feedbackButton: document.getElementById("feedbackButton"),
+  feedbackHint: document.getElementById("feedbackHint"),
+  feedbackItem1: document.getElementById("feedbackItem1"),
+  feedbackItem2: document.getElementById("feedbackItem2"),
+  feedbackItem3: document.getElementById("feedbackItem3"),
+  feedbackItem4: document.getElementById("feedbackItem4"),
   donationCard: document.getElementById("donationCard"),
-  donationClose: document.querySelector(".donation-close"),
+  donationClose: document.getElementById("donationClose"),
+  donationBadge: document.getElementById("donationBadge"),
+  donationNote: document.getElementById("donationNote"),
+  donationImage: document.getElementById("donationImage"),
+  metaDescription: document.querySelector('meta[name="description"]'),
 };
 
 init();
 
 function init() {
   applySavedTheme();
-  applySidebarCollapsedState();
+  applyLanguage();
   bindEvents();
   render();
 }
@@ -479,6 +1047,9 @@ function bindEvents() {
   });
 
   refs.themeToggle.addEventListener("click", toggleTheme);
+  if (refs.langToggle) {
+    refs.langToggle.addEventListener("click", toggleLanguage);
+  }
   refs.sidebarToggle.addEventListener("click", toggleSidebarCollapsed);
   if (refs.donationClose && refs.donationCard) {
     refs.donationClose.addEventListener("click", () => {
@@ -488,8 +1059,8 @@ function bindEvents() {
 
   refs.resetFilterBtn.addEventListener("click", () => {
     state.keyword = "";
-    state.activeCategory = "全部";
-    state.sidebarCategory = "全部";
+    state.activeCategory = getAllLabel();
+    state.sidebarCategory = getAllLabel();
     refs.searchInput.value = "";
     render();
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -515,8 +1086,16 @@ function isTypingTarget(target) {
   );
 }
 
+function getLangConfig() {
+  return LANGUAGES[state.language] || LANGUAGES.zh;
+}
+
+function getAllLabel() {
+  return getLangConfig().allLabel;
+}
+
 function getAllSites() {
-  return BUILTIN_SITES.map((site, index) => ({
+  return getLangConfig().sites.map((site, index) => ({
     ...site,
     id: `site-${index}`,
   }));
@@ -524,14 +1103,15 @@ function getAllSites() {
 
 function getCategories(sites) {
   const extraCategories = [];
-  const seen = new Set(CATEGORY_ORDER);
+  const categoryOrder = getLangConfig().categoryOrder;
+  const seen = new Set(categoryOrder);
   for (const site of sites) {
     if (!seen.has(site.category)) {
       seen.add(site.category);
       extraCategories.push(site.category);
     }
   }
-  return [...CATEGORY_ORDER, ...extraCategories];
+  return [...categoryOrder, ...extraCategories];
 }
 
 function siteMatchesKeyword(site, keyword) {
@@ -547,20 +1127,17 @@ function siteMatchesKeyword(site, keyword) {
 function render() {
   const sites = getAllSites();
   const categories = getCategories(sites);
+  const allLabel = getAllLabel();
 
-  if (
-    state.activeCategory !== "全部" &&
-    !categories.includes(state.activeCategory)
-  ) {
-    state.activeCategory = "全部";
+  if (state.activeCategory !== allLabel && !categories.includes(state.activeCategory)) {
+    state.activeCategory = allLabel;
   }
 
   const searchableSites = sites.filter((site) =>
     siteMatchesKeyword(site, state.keyword),
   );
   const visibleSites = searchableSites.filter(
-    (site) =>
-      state.activeCategory === "全部" || site.category === state.activeCategory,
+    (site) => state.activeCategory === allLabel || site.category === state.activeCategory,
   );
 
   renderCategoryBar(categories, searchableSites);
@@ -572,8 +1149,9 @@ function render() {
 }
 
 function renderCategoryBar(categories, searchableSites) {
+  const allLabel = getAllLabel();
   refs.categoryBar.textContent = "";
-  refs.categoryBar.append(createCategoryChip("全部", searchableSites.length));
+  refs.categoryBar.append(createCategoryChip(allLabel, searchableSites.length));
   for (const category of categories) {
     const count = searchableSites.filter((site) => site.category === category).length;
     refs.categoryBar.append(createCategoryChip(category, count));
@@ -599,8 +1177,9 @@ function createCategoryChip(category, count) {
 }
 
 function renderSidebar(categories, searchableSites) {
+  const allLabel = getAllLabel();
   refs.sidebarNav.textContent = "";
-  refs.sidebarNav.append(createSidebarItem("全部", searchableSites.length));
+  refs.sidebarNav.append(createSidebarItem(allLabel, searchableSites.length));
   for (const category of categories) {
     const count = searchableSites.filter((site) => site.category === category).length;
     refs.sidebarNav.append(createSidebarItem(category, count));
@@ -608,6 +1187,7 @@ function renderSidebar(categories, searchableSites) {
 }
 
 function createSidebarItem(category, count) {
+  const allLabel = getAllLabel();
   const btn = document.createElement("button");
   btn.type = "button";
   btn.className = "sidebar-link";
@@ -616,7 +1196,7 @@ function createSidebarItem(category, count) {
   if (category === state.sidebarCategory) {
     btn.classList.add("active");
   }
-  if (count === 0 && category !== "全部") {
+  if (count === 0 && category !== allLabel) {
     btn.disabled = true;
   }
 
@@ -624,7 +1204,8 @@ function createSidebarItem(category, count) {
   label.className = "sidebar-main";
   const icon = document.createElement("span");
   icon.className = "sidebar-icon";
-  icon.textContent = CATEGORY_ICON[category] || "📚";
+  const iconMap = getLangConfig().categoryIcon;
+  icon.textContent = iconMap[category] || "📚";
   const text = document.createElement("span");
   text.className = "sidebar-text";
   text.textContent = category;
@@ -639,15 +1220,15 @@ function createSidebarItem(category, count) {
     state.sidebarCategory = category;
     syncSidebarActiveUI();
     syncCategoryChipActiveUI();
-    if (category === "全部") {
-      state.activeCategory = "全部";
+    if (category === allLabel) {
+      state.activeCategory = allLabel;
       render();
       window.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
 
-    if (state.activeCategory !== "全部") {
-      state.activeCategory = "全部";
+    if (state.activeCategory !== allLabel) {
+      state.activeCategory = allLabel;
       render();
     }
     requestAnimationFrame(() => {
@@ -661,6 +1242,8 @@ function createSidebarItem(category, count) {
 function renderSections(visibleSites, categories) {
   refs.sectionsRoot.textContent = "";
   const grouped = new Map();
+  const lang = getLangConfig();
+  const iconMap = lang.categoryIcon;
 
   for (const category of categories) {
     grouped.set(category, []);
@@ -687,10 +1270,10 @@ function renderSections(visibleSites, categories) {
     head.className = "section-head";
 
     const title = document.createElement("h2");
-    title.textContent = `${CATEGORY_ICON[category] || "📚"} ${category}`;
+    title.textContent = `${iconMap[category] || "📚"} ${category}`;
 
     const count = document.createElement("span");
-    count.textContent = `${items.length} 个站点`;
+    count.textContent = `${items.length}${lang.siteCountSuffix}`;
 
     head.append(title, count);
 
@@ -709,6 +1292,7 @@ function renderSections(visibleSites, categories) {
 }
 
 function createSiteCard(site) {
+  const lang = getLangConfig();
   const wrapper = document.createElement("article");
   wrapper.className = "site-item";
 
@@ -724,12 +1308,12 @@ function createSiteCard(site) {
 
   const desc = document.createElement("span");
   desc.className = "site-desc";
-  desc.textContent = site.desc || "暂无简介";
+  desc.textContent = site.desc || lang.noDesc;
 
   const tags = document.createElement("span");
   tags.className = "site-tags";
   const shownTags = (site.tags || []).slice(0, 3).map((tag) => `#${tag}`);
-  tags.textContent = shownTags.length ? shownTags.join(" ") : "#书籍资源";
+  tags.textContent = shownTags.length ? shownTags.join(" ") : lang.tagsFallback;
 
   link.append(title, desc, tags);
   wrapper.append(link);
@@ -759,7 +1343,8 @@ function onResizeChanged() {
 }
 
 function updateSidebarFromScroll() {
-  if (state.activeCategory !== "全部") {
+  const allLabel = getAllLabel();
+  if (state.activeCategory !== allLabel) {
     if (state.sidebarCategory !== state.activeCategory) {
       state.sidebarCategory = state.activeCategory;
       syncSidebarActiveUI();
@@ -769,8 +1354,8 @@ function updateSidebarFromScroll() {
   }
 
   if (!scrollSpy.sections.length) {
-    if (state.sidebarCategory !== "全部") {
-      state.sidebarCategory = "全部";
+    if (state.sidebarCategory !== allLabel) {
+      state.sidebarCategory = allLabel;
       syncSidebarActiveUI();
       syncCategoryChipActiveUI();
     }
@@ -778,7 +1363,7 @@ function updateSidebarFromScroll() {
   }
 
   const marker = window.scrollY + 150;
-  let currentCategory = "全部";
+  let currentCategory = allLabel;
 
   for (const section of scrollSpy.sections) {
     if (section.offsetTop <= marker) {
@@ -812,10 +1397,11 @@ function syncCategoryChipActiveUI() {
 }
 
 function getChipActiveCategory() {
-  if (state.activeCategory !== "全部") {
+  const allLabel = getAllLabel();
+  if (state.activeCategory !== allLabel) {
     return state.activeCategory;
   }
-  return state.sidebarCategory || "全部";
+  return state.sidebarCategory || allLabel;
 }
 
 function toggleSidebarCollapsed() {
@@ -825,11 +1411,12 @@ function toggleSidebarCollapsed() {
 }
 
 function applySidebarCollapsedState() {
+  const lang = getLangConfig();
   const isDesktop = window.matchMedia("(min-width: 1141px)").matches;
   const effectiveCollapsed = state.sidebarCollapsed && isDesktop;
   refs.layout.classList.toggle("is-sidebar-collapsed", effectiveCollapsed);
 
-  const nextLabel = effectiveCollapsed ? "展开目录" : "收起目录";
+  const nextLabel = effectiveCollapsed ? lang.sidebarExpand : lang.sidebarCollapse;
   refs.sidebarToggle.setAttribute("aria-label", nextLabel);
   refs.sidebarToggle.setAttribute("title", nextLabel);
   refs.sidebarToggle.textContent = effectiveCollapsed ? "⮞" : "⮜";
@@ -892,6 +1479,132 @@ function normalizeUrl(url) {
   return `https://${url}`;
 }
 
+function toggleLanguage() {
+  state.language = state.language === "zh" ? "en" : "zh";
+  persistLanguage();
+  state.keyword = "";
+  state.activeCategory = getAllLabel();
+  state.sidebarCategory = getAllLabel();
+  refs.searchInput.value = "";
+  applyLanguage();
+  render();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function applyLanguage() {
+  const lang = getLangConfig();
+  document.documentElement.lang = lang.htmlLang;
+  document.title = lang.meta.title;
+  if (refs.metaDescription) {
+    refs.metaDescription.setAttribute("content", lang.meta.description);
+  }
+
+  if (refs.heroTitle) {
+    refs.heroTitle.textContent = lang.heroTitle;
+  }
+  if (refs.heroSubtitle) {
+    refs.heroSubtitle.textContent = lang.heroSubtitle;
+  }
+  if (refs.sidebarTitle) {
+    refs.sidebarTitle.textContent = lang.sidebarTitle;
+  }
+  if (refs.searchInput) {
+    refs.searchInput.placeholder = lang.searchPlaceholder;
+  }
+  if (refs.searchLabel) {
+    refs.searchLabel.setAttribute("aria-label", lang.searchAria);
+  }
+  if (refs.categoryBar) {
+    refs.categoryBar.setAttribute("aria-label", lang.categoryBarAria);
+  }
+  if (refs.sidebarNav) {
+    refs.sidebarNav.setAttribute("aria-label", lang.sidebarAria);
+  }
+  if (refs.feedbackEntry) {
+    refs.feedbackEntry.textContent = lang.feedbackEntry;
+  }
+  if (refs.totalLabel) {
+    refs.totalLabel.textContent = lang.overview.total;
+  }
+  if (refs.visibleLabel) {
+    refs.visibleLabel.textContent = lang.overview.visible;
+  }
+  if (refs.categoryLabel) {
+    refs.categoryLabel.textContent = lang.overview.categories;
+  }
+  if (refs.resetFilterBtn) {
+    refs.resetFilterBtn.textContent = lang.overview.reset;
+  }
+  if (refs.emptyState) {
+    refs.emptyState.textContent = lang.emptyState;
+  }
+
+  if (refs.feedbackTitle) {
+    refs.feedbackTitle.textContent = lang.feedback.title;
+  }
+  if (refs.feedbackDesc) {
+    refs.feedbackDesc.textContent = lang.feedback.desc;
+  }
+  if (refs.feedbackButton) {
+    refs.feedbackButton.textContent = lang.feedback.button;
+  }
+  if (refs.feedbackHint) {
+    refs.feedbackHint.textContent = lang.feedback.hint;
+  }
+  if (refs.feedbackItem1) {
+    refs.feedbackItem1.textContent = lang.feedback.items[0];
+  }
+  if (refs.feedbackItem2) {
+    refs.feedbackItem2.textContent = lang.feedback.items[1];
+  }
+  if (refs.feedbackItem3) {
+    refs.feedbackItem3.textContent = lang.feedback.items[2];
+  }
+  if (refs.feedbackItem4) {
+    refs.feedbackItem4.textContent = lang.feedback.items[3];
+  }
+
+  if (refs.donationBadge) {
+    refs.donationBadge.textContent = lang.donation.badge;
+  }
+  if (refs.donationNote) {
+    refs.donationNote.textContent = lang.donation.note;
+  }
+  if (refs.donationImage) {
+    refs.donationImage.alt = lang.donation.alt;
+  }
+  if (refs.donationClose) {
+    refs.donationClose.setAttribute("aria-label", lang.donation.closeLabel);
+    refs.donationClose.setAttribute("title", lang.donation.closeLabel);
+  }
+  if (refs.donationCard) {
+    refs.donationCard.setAttribute("aria-label", lang.donation.ariaLabel);
+  }
+  if (refs.langToggle) {
+    refs.langToggle.textContent = lang.toggleLabel;
+  }
+
+  syncThemeLabel(document.documentElement.dataset.theme);
+  applySidebarCollapsedState();
+}
+
+function loadLanguage() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEYS.language);
+    return saved === "en" ? "en" : "zh";
+  } catch {
+    return "zh";
+  }
+}
+
+function persistLanguage() {
+  try {
+    localStorage.setItem(STORAGE_KEYS.language, state.language);
+  } catch {
+    return;
+  }
+}
+
 function toggleTheme() {
   const html = document.documentElement;
   const nextTheme = html.dataset.theme === "dark" ? "light" : "dark";
@@ -908,5 +1621,7 @@ function applySavedTheme() {
 }
 
 function syncThemeLabel(theme) {
-  refs.themeToggle.textContent = theme === "dark" ? "☀️ 浅色" : "🌙 深色";
+  const lang = getLangConfig();
+  refs.themeToggle.textContent =
+    theme === "dark" ? lang.themeToggle.light : lang.themeToggle.dark;
 }

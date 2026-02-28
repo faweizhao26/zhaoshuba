@@ -193,6 +193,10 @@ body::before {
   transition: 0.2s ease;
 }
 
+.sidebar-count {
+  line-height: 1.2;
+}
+
 .sidebar-link::before {
   content: "";
   position: absolute;
@@ -237,6 +241,34 @@ body::before {
   border-color: transparent;
   background: linear-gradient(118deg, var(--brand), var(--brand-strong));
   box-shadow: 0 10px 22px rgba(93, 98, 255, 0.28);
+}
+
+html[lang="en"] .sidebar-link {
+  align-items: flex-start;
+}
+
+html[lang="en"] .sidebar-main {
+  align-items: flex-start;
+}
+
+html[lang="en"] .sidebar-text {
+  white-space: normal;
+  line-height: 1.3;
+}
+
+html[lang="en"] .sidebar-link::before {
+  top: 14px;
+  transform: none;
+}
+
+html[lang="en"] .sidebar-count {
+  margin-top: 2px;
+}
+
+html[lang="en"] .chip {
+  font-size: 0.82rem;
+  white-space: normal;
+  line-height: 1.25;
 }
 
 .sidebar-link.active::before {
@@ -656,11 +688,17 @@ html[data-theme="light"] .hero-title p {
   );
 }
 
-.theme-corner {
+.hero-tools {
   position: absolute;
   top: 14px;
   right: 14px;
   z-index: 3;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.hero-tools .theme-btn {
   min-height: 38px;
   padding: 0 12px;
   border-color: color-mix(in srgb, var(--brand) 30%, var(--line));
@@ -672,9 +710,13 @@ html[data-theme="light"] .hero-title p {
   box-shadow: 0 8px 18px rgba(88, 104, 220, 0.25);
 }
 
-.theme-corner:hover {
+.hero-tools .theme-btn:hover {
   transform: translateY(-1px);
   box-shadow: 0 10px 20px rgba(96, 113, 236, 0.3);
+}
+
+.lang-btn {
+  min-width: 54px;
 }
 
 .category-bar {
@@ -1116,9 +1158,12 @@ main {
     align-items: flex-start;
   }
 
-  .theme-corner {
+  .hero-tools {
     top: 10px;
     right: 10px;
+  }
+
+  .hero-tools .theme-btn {
     min-height: 36px;
     font-size: 0.86rem;
     padding: 0 11px;
