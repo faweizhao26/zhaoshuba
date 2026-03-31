@@ -1063,12 +1063,43 @@ main {
   text-align: center;
 }
 
+.footer-panel {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  background:
+    linear-gradient(
+      160deg,
+      color-mix(in srgb, var(--card-strong) 78%, transparent),
+      color-mix(in srgb, var(--card) 94%, transparent)
+    );
+  box-shadow: var(--shadow-soft);
+}
+
+.footer-copy {
+  color: color-mix(in srgb, var(--text-soft) 90%, transparent);
+}
+
 .footer-links {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 12px;
   flex-wrap: wrap;
+}
+
+.footer-nav {
+  gap: 10px;
+}
+
+.footer-caption {
+  color: var(--text-soft);
+  font-size: 0.73rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .footer-link {
@@ -1079,6 +1110,30 @@ main {
 
 .footer-link:hover {
   color: var(--text);
+}
+
+.footer-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 15px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--brand) 26%, var(--line));
+  background: color-mix(in srgb, var(--card-strong) 90%, black 10%);
+  box-shadow: 0 8px 18px rgba(67, 84, 175, 0.16);
+}
+
+.footer-pill:hover {
+  color: #fff;
+  border-color: color-mix(in srgb, var(--brand) 40%, var(--line));
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--brand) 42%, var(--card-strong)),
+    color-mix(in srgb, var(--brand-strong) 34%, var(--card-strong))
+  );
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(90, 108, 220, 0.22);
 }
 
 .legal-shell {
@@ -1274,6 +1329,10 @@ main {
 
   .footer-links {
     gap: 10px;
+  }
+
+  .footer-panel {
+    padding: 16px;
   }
 
   .legal-card {

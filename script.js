@@ -896,6 +896,7 @@ const LANGUAGES = {
       ariaLabel: "赞助支持",
     },
     footer: {
+      caption: "站点说明",
       about: "关于本站",
       privacy: "隐私政策",
       aboutHref: "about.html",
@@ -959,6 +960,7 @@ const LANGUAGES = {
       ariaLabel: "Support",
     },
     footer: {
+      caption: "Site Info",
       about: "About",
       privacy: "Privacy Policy",
       aboutHref: "about-en.html",
@@ -1040,6 +1042,7 @@ const refs = {
   donationBadge: document.getElementById("donationBadge"),
   donationNote: document.getElementById("donationNote"),
   donationImage: document.getElementById("donationImage"),
+  footerCaption: document.getElementById("footerCaption"),
   footerAboutLink: document.getElementById("footerAboutLink"),
   footerPrivacyLink: document.getElementById("footerPrivacyLink"),
   metaDescription: document.querySelector('meta[name="description"]'),
@@ -1593,6 +1596,9 @@ function applyLanguage() {
   }
   if (refs.donationCard) {
     refs.donationCard.setAttribute("aria-label", lang.donation.ariaLabel);
+  }
+  if (refs.footerCaption) {
+    refs.footerCaption.textContent = lang.footer.caption;
   }
   if (refs.footerAboutLink) {
     refs.footerAboutLink.textContent = lang.footer.about;
