@@ -667,6 +667,9 @@ html[data-theme="light"] .hero-title p {
 }
 
 .theme-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border: 1px solid var(--line);
   background: color-mix(in srgb, var(--card-strong) 90%, black 10%);
   color: var(--text);
@@ -675,6 +678,8 @@ html[data-theme="light"] .hero-title p {
   font-size: 0.92rem;
   cursor: pointer;
   min-height: 44px;
+  text-decoration: none;
+  white-space: nowrap;
   transition: 0.2s ease;
 }
 

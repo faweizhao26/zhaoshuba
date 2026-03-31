@@ -895,6 +895,12 @@ const LANGUAGES = {
       closeLabel: "关闭赞助卡片",
       ariaLabel: "赞助支持",
     },
+    footer: {
+      about: "关于本站",
+      privacy: "隐私政策",
+      aboutHref: "about.html",
+      privacyHref: "privacy.html",
+    },
     themeToggle: {
       light: "☀️ 浅色",
       dark: "🌙 深色",
@@ -951,6 +957,12 @@ const LANGUAGES = {
       alt: "Alipay support QR code",
       closeLabel: "Close support card",
       ariaLabel: "Support",
+    },
+    footer: {
+      about: "About",
+      privacy: "Privacy Policy",
+      aboutHref: "about-en.html",
+      privacyHref: "privacy-en.html",
     },
     themeToggle: {
       light: "☀️ Light",
@@ -1028,6 +1040,8 @@ const refs = {
   donationBadge: document.getElementById("donationBadge"),
   donationNote: document.getElementById("donationNote"),
   donationImage: document.getElementById("donationImage"),
+  footerAboutLink: document.getElementById("footerAboutLink"),
+  footerPrivacyLink: document.getElementById("footerPrivacyLink"),
   metaDescription: document.querySelector('meta[name="description"]'),
 };
 
@@ -1579,6 +1593,14 @@ function applyLanguage() {
   }
   if (refs.donationCard) {
     refs.donationCard.setAttribute("aria-label", lang.donation.ariaLabel);
+  }
+  if (refs.footerAboutLink) {
+    refs.footerAboutLink.textContent = lang.footer.about;
+    refs.footerAboutLink.href = lang.footer.aboutHref;
+  }
+  if (refs.footerPrivacyLink) {
+    refs.footerPrivacyLink.textContent = lang.footer.privacy;
+    refs.footerPrivacyLink.href = lang.footer.privacyHref;
   }
   if (refs.langToggle) {
     refs.langToggle.textContent = lang.toggleLabel;
