@@ -1,864 +1,640 @@
-const CATEGORY_ORDER_ZH = [
-  "电子书下载",
-  "电子书在线阅读",
-  "书单/书籍推荐",
-  "杂志漫画",
-  "学术期刊",
-  "数字古籍",
-  "有声书",
-  "阅读软件/工具",
-];
-
-const CATEGORY_ICON_ZH = {
-  电子书下载: "📥",
-  电子书在线阅读: "📖",
-  "书单/书籍推荐": "🧭",
-  杂志漫画: "📰",
-  学术期刊: "🧪",
-  数字古籍: "🏛️",
-  有声书: "🎧",
-  "阅读软件/工具": "🛠️",
-};
-
-const BUILTIN_SITES_ZH = [
+const SITES = [
   {
-    title: "Z-Library",
     url: "https://z-library.la/",
-    category: "电子书下载",
-    desc: "海量电子书，支持多种格式下载。",
-    tags: ["中英文", "EPUB/MOBI/AZW3/PDF"],
+    category: "ebook-downloads",
+    titleKey: "zlibrary",
+    descKey: "zlibrary",
+    tagsKeys: ["chinese_english", "epub_mobi_azw3_pdf"],
   },
   {
-    title: "安娜的档案",
     url: "https://zh.annas-archive.li/",
-    category: "电子书下载",
-    desc: "人类历史上最大的完全开放的图书馆。",
-    tags: ["中英文", "EPUB"],
+    category: "ebook-downloads",
+    titleKey: "annas_archive",
+    descKey: "annas_archive",
+    tagsKeys: ["chinese_english", "epub"],
   },
   {
-    title: "Liber3",
     url: "https://liber3.eth.limo/#/",
-    category: "电子书下载",
-    desc: "海量电子书。",
-    tags: ["中英文", "EPUB"],
+    category: "ebook-downloads",
+    titleKey: "liber3",
+    descKey: "liber3",
+    tagsKeys: ["chinese_english", "epub"],
   },
   {
-    title: "小力盘搜索",
     url: "https://www.xiaolipan.com/index.html",
-    category: "电子书下载",
-    desc: "海量电子书，支持多种格式下载。",
-    tags: ["中英文", "EPUB/PDF"],
+    category: "ebook-downloads",
+    titleKey: "xiaolipan",
+    descKey: "xiaolipan",
+    tagsKeys: ["chinese_english", "epub_pdf"],
   },
   {
-    title: "24h 搜书",
     url: "https://24hbook.store/",
-    category: "电子书下载",
-    desc: "海量电子书。",
-    tags: ["中英文", "EPUB"],
+    category: "ebook-downloads",
+    titleKey: "24hbook",
+    descKey: "24hbook",
+    tagsKeys: ["chinese_english", "epub"],
   },
   {
-    title: "无名图书",
     url: "https://www.book345.com/",
-    category: "电子书下载",
-    desc: "海量电子书。",
-    tags: ["中英文", "EPUB"],
+    category: "ebook-downloads",
+    titleKey: "book345",
+    descKey: "book345",
+    tagsKeys: ["chinese_english", "epub"],
   },
   {
-    title: "书籍知识库",
     url: "https://www.zhishikoo.com/",
-    category: "电子书下载",
-    desc: "海量电子书，支持多种格式下载。",
-    tags: ["中英文", "EPUB/MOBI/AZW3/PDF"],
+    category: "ebook-downloads",
+    titleKey: "zhishikoo",
+    descKey: "zhishikoo",
+    tagsKeys: ["chinese_english", "epub_mobi_azw3_pdf"],
   },
   {
-    title: "Project Gutenberg",
     url: "https://www.gutenberg.org/",
-    category: "电子书下载",
-    desc: "海量公版电子书，支持多种格式下载。",
-    tags: ["公版书", "英文", "EPUB"],
+    category: "ebook-downloads",
+    titleKey: "gutenberg",
+    descKey: "gutenberg",
+    tagsKeys: ["public_domain", "english", "epub"],
   },
   {
-    title: "Standard Ebooks",
     url: "https://standardebooks.org/",
-    category: "电子书下载",
-    desc: "高质量排版的免费经典电子书。",
-    tags: ["公版书", "排版", "EPUB"],
+    category: "ebook-downloads",
+    titleKey: "standard_ebooks",
+    descKey: "standard_ebooks",
+    tagsKeys: ["public_domain", "typesetting", "epub"],
   },
   {
-    title: "ManyBooks",
     url: "https://manybooks.net/",
-    category: "电子书下载",
-    desc: "提供免费和折扣电子书下载与推荐。",
-    tags: ["免费", "小说", "下载"],
+    category: "ebook-downloads",
+    titleKey: "manybooks",
+    descKey: "manybooks",
+    tagsKeys: ["free", "fiction", "downloads"],
   },
   {
-    title: "OpenStax",
     url: "https://openstax.org/subjects",
-    category: "电子书下载",
-    desc: "开放教材资源，适合学习与教学。",
-    tags: ["教材", "学习", "PDF"],
+    category: "ebook-downloads",
+    titleKey: "openstax",
+    descKey: "openstax",
+    tagsKeys: ["textbooks", "learning", "pdf"],
   },
   {
-    title: "Internet Archive Texts",
     url: "https://archive.org/details/texts",
-    category: "电子书下载",
-    desc: "互联网档案馆文献区，覆盖多语种图书。",
-    tags: ["档案", "历史", "PDF"],
+    category: "ebook-downloads",
+    titleKey: "internet_archive_texts",
+    descKey: "internet_archive_texts",
+    tagsKeys: ["archive", "history", "pdf"],
   },
   {
-    title: "Open Library",
     url: "https://openlibrary.org/",
-    category: "电子书在线阅读",
-    desc: "支持在线借阅与阅读海量图书。",
-    tags: ["在线阅读", "借阅", "英文"],
+    category: "online-reading",
+    titleKey: "openlibrary",
+    descKey: "openlibrary",
+    tagsKeys: ["online_reading", "lending", "english"],
   },
   {
-    title: "Google Books",
     url: "https://books.google.com/",
-    category: "电子书在线阅读",
-    desc: "图书检索与部分在线预览。",
-    tags: ["检索", "预览", "多语言"],
+    category: "online-reading",
+    titleKey: "google_books",
+    descKey: "google_books",
+    tagsKeys: ["search", "preview", "multilingual"],
   },
   {
-    title: "Wikisource",
     url: "https://wikisource.org/",
-    category: "电子书在线阅读",
-    desc: "维基文库，开放文本在线阅读。",
-    tags: ["文库", "公版", "在线"],
+    category: "online-reading",
+    titleKey: "wikisource",
+    descKey: "wikisource",
+    tagsKeys: ["library", "public_domain", "online"],
   },
   {
-    title: "豆瓣阅读",
     url: "https://read.douban.com/",
-    category: "电子书在线阅读",
-    desc: "中文书城与原创作品在线阅读平台。",
-    tags: ["中文", "原创", "书城"],
+    category: "online-reading",
+    titleKey: "douban_read",
+    descKey: "douban_read",
+    tagsKeys: ["chinese", "original", "bookstore"],
   },
   {
-    title: "微信读书网页版",
     url: "https://weread.qq.com/",
-    category: "电子书在线阅读",
-    desc: "腾讯微信读书 Web 端，支持笔记与划线。",
-    tags: ["中文", "笔记", "阅读"],
+    category: "online-reading",
+    titleKey: "wechat_read",
+    descKey: "wechat_read",
+    tagsKeys: ["chinese", "notes", "reading"],
   },
   {
-    title: "Internet Archive BookReader",
     url: "https://archive.org/details/books",
-    category: "电子书在线阅读",
-    desc: "互联网档案馆在线阅读入口，覆盖历史文献与图书。",
-    tags: ["在线阅读", "档案馆", "多语种"],
+    category: "online-reading",
+    titleKey: "ia_bookreader",
+    descKey: "ia_bookreader",
+    tagsKeys: ["online_reading", "archive", "multilingual"],
   },
   {
-    title: "豆瓣读书",
     url: "https://book.douban.com/",
-    category: "书单/书籍推荐",
-    desc: "中文书评、书单与高频热门推荐。",
-    tags: ["书评", "评分", "推荐"],
+    category: "book-recommendations",
+    titleKey: "douban_books",
+    descKey: "douban_books",
+    tagsKeys: ["reviews", "ratings", "recommendations"],
   },
   {
-    title: "书单来了",
     url: "https://mp.weixin.qq.com/s/wy9VRewPCOxzJwto3zHehw",
-    category: "书单/书籍推荐",
-    desc: "中文书评、书单与高频热门推荐。",
-    tags: ["书评", "评分", "推荐"],
+    category: "book-recommendations",
+    titleKey: "book_list_weekly",
+    descKey: "book_list_weekly",
+    tagsKeys: ["reviews", "ratings", "recommendations"],
   },
   {
-    title: "Goodreads",
     url: "https://www.goodreads.com/",
-    category: "书单/书籍推荐",
-    desc: "全球读书社区，擅长英文书单发现。",
-    tags: ["英文", "社区", "评分"],
+    category: "book-recommendations",
+    titleKey: "goodreads",
+    descKey: "goodreads",
+    tagsKeys: ["english", "community", "ratings"],
   },
   {
-    title: "The StoryGraph",
     url: "https://app.thestorygraph.com/",
-    category: "书单/书籍推荐",
-    desc: "可视化阅读偏好分析和书籍推荐。",
-    tags: ["推荐", "可视化", "社区"],
+    category: "book-recommendations",
+    titleKey: "storygraph",
+    descKey: "storygraph",
+    tagsKeys: ["recommendations", "visualization", "community"],
   },
   {
-    title: "Fantastic Fiction",
     url: "https://www.fantasticfiction.com/",
-    category: "书单/书籍推荐",
-    desc: "按作者和系列发现相关作品。",
-    tags: ["小说", "作者", "系列"],
+    category: "book-recommendations",
+    titleKey: "fantastic_fiction",
+    descKey: "fantastic_fiction",
+    tagsKeys: ["fiction", "authors", "series"],
   },
   {
-    title: "What Should I Read Next",
     url: "https://www.whatshouldireadnext.com/",
-    category: "书单/书籍推荐",
-    desc: "输入一本书，发现相似书籍。",
-    tags: ["推荐", "发现", "英文"],
+    category: "book-recommendations",
+    titleKey: "what_should_i_read",
+    descKey: "what_should_i_read",
+    tagsKeys: ["recommendations", "discovery", "english"],
   },
   {
-    title: "MangaDex",
     url: "https://mangadex.org/",
-    category: "杂志漫画",
-    desc: "多语言漫画阅读与更新追踪。",
-    tags: ["漫画", "多语言", "在线"],
+    category: "magazines-comics",
+    titleKey: "mangadex",
+    descKey: "mangadex",
+    tagsKeys: ["manga", "multilingual", "online"],
   },
   {
-    title: "ComicWalker",
     url: "https://comic-walker.com/",
-    category: "杂志漫画",
-    desc: "日本官方漫画在线平台（部分免费）。",
-    tags: ["日漫", "官方", "在线"],
+    category: "magazines-comics",
+    titleKey: "comic_walker",
+    descKey: "comic_walker",
+    tagsKeys: ["manga", "official", "online"],
   },
   {
-    title: "腾讯动漫",
     url: "https://ac.qq.com/",
-    category: "杂志漫画",
-    desc: "国漫与日漫内容平台。",
-    tags: ["漫画", "中文", "连载"],
+    category: "magazines-comics",
+    titleKey: "tencent_comics",
+    descKey: "tencent_comics",
+    tagsKeys: ["comics", "chinese", "serials"],
   },
   {
-    title: "哔哩哔哩漫画",
     url: "https://manga.bilibili.com/",
-    category: "杂志漫画",
-    desc: "国漫与日漫内容平台。",
-    tags: ["漫画", "中文", "连载"],
+    category: "magazines-comics",
+    titleKey: "bilibili_manga",
+    descKey: "bilibili_manga",
+    tagsKeys: ["comics", "chinese", "serials"],
   },
   {
-    title: "Manhuagui",
     url: "https://www.manhuagui.com/",
-    category: "杂志漫画",
-    desc: "漫画资源聚合平台。",
-    tags: ["漫画", "中文", "更新"],
+    category: "magazines-comics",
+    titleKey: "manhuagui",
+    descKey: "manhuagui",
+    tagsKeys: ["comics", "chinese", "updates"],
   },
   {
-    title: "十月",
     url: "https://shiyuezazhi.com/sy/index.html",
-    category: "杂志漫画",
-    desc: "大型文学期刊。",
-    tags: ["杂志", "中文", "文学"],
+    category: "magazines-comics",
+    titleKey: "shiyue_magazine",
+    descKey: "shiyue_magazine",
+    tagsKeys: ["magazine", "chinese", "literature"],
   },
   {
-    title: "中国国家地理",
     url: "https://www.dili360.com/Cng/index/index.htm",
-    category: "杂志漫画",
-    desc: "大型科普杂志。",
-    tags: ["杂志", "中文", "地理"],
+    category: "magazines-comics",
+    titleKey: "cngeography",
+    descKey: "cngeography",
+    tagsKeys: ["magazine", "chinese", "geography"],
   },
   {
-    title: "博物",
     url: "https://www.dili360.com/nh/mag/detail/1001.htm",
-    category: "杂志漫画",
-    desc: "大型科普杂志。",
-    tags: ["杂志", "中文", "生物"],
+    category: "magazines-comics",
+    titleKey: "natural_history_mag",
+    descKey: "natural_history_mag",
+    tagsKeys: ["magazine", "chinese", "biology"],
   },
   {
-    title: "Google Scholar",
     url: "https://scholar.google.com/",
-    category: "学术期刊",
-    desc: "学术论文检索入口，覆盖广泛。",
-    tags: ["论文", "检索", "学术"],
+    category: "academic-journals",
+    titleKey: "google_scholar",
+    descKey: "google_scholar",
+    tagsKeys: ["papers", "search", "academic"],
   },
   {
-    title: "DOAJ",
     url: "https://doaj.org/",
-    category: "学术期刊",
-    desc: "开放获取期刊目录。",
-    tags: ["开源期刊", "OA", "学术"],
+    category: "academic-journals",
+    titleKey: "doaj",
+    descKey: "doaj",
+    tagsKeys: ["open_access", "oa", "academic"],
   },
   {
-    title: "JSTOR Open Content",
     url: "https://about.jstor.org/oa-and-free/",
-    category: "学术期刊",
-    desc: "JSTOR 开放内容资源页面。",
-    tags: ["期刊", "人文", "开放"],
+    category: "academic-journals",
+    titleKey: "jstor_open",
+    descKey: "jstor_open",
+    tagsKeys: ["journals", "humanities", "open"],
   },
   {
-    title: "PubMed",
     url: "https://pubmed.ncbi.nlm.nih.gov/",
-    category: "学术期刊",
-    desc: "医学与生命科学论文检索数据库。",
-    tags: ["医学", "检索", "论文"],
+    category: "academic-journals",
+    titleKey: "pubmed",
+    descKey: "pubmed",
+    tagsKeys: ["medicine", "search", "papers"],
   },
   {
-    title: "arXiv",
     url: "https://arxiv.org/",
-    category: "学术期刊",
-    desc: "预印本论文平台，理工科常用。",
-    tags: ["预印本", "理工", "科研"],
+    category: "academic-journals",
+    titleKey: "arxiv",
+    descKey: "arxiv",
+    tagsKeys: ["preprints", "stem", "research"],
   },
   {
-    title: "Semantic Scholar",
     url: "https://www.semanticscholar.org/",
-    category: "学术期刊",
-    desc: "AI 驱动的论文检索与引用分析。",
-    tags: ["AI", "引用", "学术"],
+    category: "academic-journals",
+    titleKey: "semantic_scholar",
+    descKey: "semantic_scholar",
+    tagsKeys: ["ai", "citations", "academic"],
   },
   {
-    title: "中国哲学书电子化计划",
     url: "https://ctext.org/zhs",
-    category: "数字古籍",
-    desc: "中文古籍在线检索与阅读。",
-    tags: ["古籍", "中文", "检索"],
+    category: "classical-texts",
+    titleKey: "chinese_text_project",
+    descKey: "chinese_text_project",
+    tagsKeys: ["classics", "chinese", "search"],
   },
   {
-    title: "汉典古籍",
     url: "https://gj.zdic.net/",
-    category: "数字古籍",
-    desc: "汉典古籍页面与古文辅助。",
-    tags: ["古文", "工具", "汉典"],
+    category: "classical-texts",
+    titleKey: "handian_classics",
+    descKey: "handian_classics",
+    tagsKeys: ["classical_chinese", "tools", "handian"],
   },
   {
-    title: "中华经典古籍库（公开信息）",
     url: "https://www.ancientbooks.cn/",
-    category: "数字古籍",
-    desc: "古籍数字化资源入口与资讯。",
-    tags: ["古籍", "数字化", "资源"],
+    category: "classical-texts",
+    titleKey: "ancientbooks",
+    descKey: "ancientbooks",
+    tagsKeys: ["classics", "digitization", "resources"],
   },
   {
-    title: "Wikisource 古籍",
     url: "https://zh.wikisource.org/",
-    category: "数字古籍",
-    desc: "维基文库中文古籍公开文本。",
-    tags: ["古籍", "公开", "在线"],
+    category: "classical-texts",
+    titleKey: "wikisource_classics",
+    descKey: "wikisource_classics",
+    tagsKeys: ["classics", "open", "online"],
   },
   {
-    title: "中华古籍资源库",
     url: "https://www.nlc.cn/pcab/zy/zhgj_zyk/",
-    category: "数字古籍",
-    desc: "中华古籍保护计划。",
-    tags: ["古籍", "公开", "在线"],
+    category: "classical-texts",
+    titleKey: "nlc_classics",
+    descKey: "nlc_classics",
+    tagsKeys: ["classics", "open", "online"],
   },
   {
-    title: "汉典重光",
     url: "https://wenyuan.aliyun.com/home",
-    category: "数字古籍",
-    desc: "古籍数字化平台。",
-    tags: ["古籍", "公开", "在线"],
+    category: "classical-texts",
+    titleKey: "handian_chongguang",
+    descKey: "handian_chongguang",
+    tagsKeys: ["classics", "open", "online"],
   },
   {
-    title: "喜马拉雅",
     url: "https://www.ximalaya.com/",
-    category: "有声书",
-    desc: "中文有声内容平台，含有声书频道。",
-    tags: ["中文", "有声", "听书"],
+    category: "audiobooks",
+    titleKey: "ximalaya",
+    descKey: "ximalaya",
+    tagsKeys: ["chinese", "audiobooks", "listening"],
   },
   {
-    title: "懒人听书",
     url: "https://www.lrts.me/",
-    category: "有声书",
-    desc: "中文听书平台，涵盖小说和知识内容。",
-    tags: ["听书", "中文", "移动端"],
+    category: "audiobooks",
+    titleKey: "lrts",
+    descKey: "lrts",
+    tagsKeys: ["audiobooks", "chinese", "mobile"],
   },
   {
-    title: "微信听书",
     url: "https://at.qq.com/",
-    category: "有声书",
-    desc: "微信官方有声内容平台。",
-    tags: ["听书", "中文", "移动端"],
+    category: "audiobooks",
+    titleKey: "wechat_listen",
+    descKey: "wechat_listen",
+    tagsKeys: ["audiobooks", "chinese", "mobile"],
   },
   {
-    title: "番茄畅听",
     url: "https://novelfm.changdunovel.com/",
-    category: "有声书",
-    desc: "今日头条有声内容平台。",
-    tags: ["听书", "中文", "移动端"],
+    category: "audiobooks",
+    titleKey: "tomato_audiobooks",
+    descKey: "tomato_audiobooks",
+    tagsKeys: ["audiobooks", "chinese", "mobile"],
   },
   {
-    title: "LibriVox",
     url: "https://librivox.org/",
-    category: "有声书",
-    desc: "志愿者录制的免费公版有声书。",
-    tags: ["有声书", "公版", "免费"],
+    category: "audiobooks",
+    titleKey: "librivox",
+    descKey: "librivox",
+    tagsKeys: ["audiobooks", "public_domain", "free"],
   },
   {
-    title: "Loyal Books",
     url: "https://www.loyalbooks.com/",
-    category: "有声书",
-    desc: "经典有声书与电子书结合平台。",
-    tags: ["经典", "有声", "免费"],
+    category: "audiobooks",
+    titleKey: "loyal_books",
+    descKey: "loyal_books",
+    tagsKeys: ["classics", "audiobooks", "free"],
   },
   {
-    title: "Spotify Audiobooks",
     url: "https://open.spotify.com/genre/audiobooks-page",
-    category: "有声书",
-    desc: "Spotify 的有声书分类入口。",
-    tags: ["有声书", "订阅", "英语"],
+    category: "audiobooks",
+    titleKey: "spotify_audiobooks",
+    descKey: "spotify_audiobooks",
+    tagsKeys: ["audiobooks", "subscription", "english"],
   },
   {
-    title: "Audible",
     url: "https://www.audible.com/",
-    category: "有声书",
-    desc: "亚马逊有声书平台，资源丰富。",
-    tags: ["有声书", "英文", "订阅"],
+    category: "audiobooks",
+    titleKey: "audible",
+    descKey: "audible",
+    tagsKeys: ["audiobooks", "english", "subscription"],
   },
   {
-    title: "Calibre",
     url: "https://calibre-ebook.com/",
-    category: "阅读软件/工具",
-    desc: "本地电子书管理、转换、传输全能工具。",
-    tags: ["格式转换", "管理", "桌面端"],
+    category: "reading-tools",
+    titleKey: "calibre",
+    descKey: "calibre",
+    tagsKeys: ["conversion", "management", "desktop"],
   },
   {
-    title: "Sigil",
     url: "https://sigil-ebook.com/",
-    category: "阅读软件/工具",
-    desc: "EPUB 编辑器，适合制作电子书。",
-    tags: ["EPUB", "编辑", "制作"],
+    category: "reading-tools",
+    titleKey: "sigil",
+    descKey: "sigil",
+    tagsKeys: ["epub", "editing", "creation"],
   },
   {
-    title: "Pandoc",
     url: "https://pandoc.org/",
-    category: "阅读软件/工具",
-    desc: "文档格式转换利器，可处理 Markdown、EPUB、PDF。",
-    tags: ["转换", "命令行", "格式"],
+    category: "reading-tools",
+    titleKey: "pandoc",
+    descKey: "pandoc",
+    tagsKeys: ["conversion", "cli", "formats"],
   },
   {
-    title: "CloudConvert",
     url: "https://cloudconvert.com/",
-    category: "阅读软件/工具",
-    desc: "在线文件格式转换，支持电子书格式。",
-    tags: ["在线转换", "格式", "工具"],
+    category: "reading-tools",
+    titleKey: "cloudconvert",
+    descKey: "cloudconvert",
+    tagsKeys: ["online_conversion", "formats", "tools"],
   },
   {
-    title: "Zamzar",
     url: "https://www.zamzar.com/",
-    category: "阅读软件/工具",
-    desc: "多格式文件转换，适合临时处理电子书。",
-    tags: ["在线转换", "格式", "便捷"],
+    category: "reading-tools",
+    titleKey: "zamzar",
+    descKey: "zamzar",
+    tagsKeys: ["online_conversion", "formats", "easy"],
   },
   {
-    title: "Koodo Reader",
     url: "https://www.koodoreader.com/",
-    category: "阅读软件/工具",
-    desc: "跨平台电子书阅读器，支持笔记和高亮。",
-    tags: ["阅读器", "跨平台", "笔记"],
+    category: "reading-tools",
+    titleKey: "koodo_reader",
+    descKey: "koodo_reader",
+    tagsKeys: ["reader", "crossplatform", "notes"],
   },
 ];
 
-const CATEGORY_ORDER_EN = [
-  "Ebook Downloads",
-  "Online Reading",
-  "Book Lists & Recommendations",
-  "Magazines & Comics",
-  "Academic Journals",
-  "Classical Texts",
-  "Audiobooks",
-  "Reading Tools",
-];
-
-const CATEGORY_ICON_EN = {
-  "Ebook Downloads": "📥",
-  "Online Reading": "📖",
-  "Book Lists & Recommendations": "🧭",
-  "Magazines & Comics": "📰",
-  "Academic Journals": "🧪",
-  "Classical Texts": "🏛️",
-  Audiobooks: "🎧",
-  "Reading Tools": "🛠️",
+const TRANSLATIONS = {
+  siteTitle: {
+    zlibrary: { zh: "Z-Library", en: "Z-Library" },
+    annas_archive: { zh: "安娜的档案", en: "Anna's Archive" },
+    liber3: { zh: "Liber3", en: "Liber3" },
+    xiaolipan: { zh: "小力盘搜索", en: "Xiaolipan Search" },
+    "24hbook": { zh: "24h 搜书", en: "24h Book Search" },
+    book345: { zh: "无名图书", en: "Nameless Books" },
+    zhishikoo: { zh: "书籍知识库", en: "Book Knowledge Base" },
+    gutenberg: { zh: "Project Gutenberg", en: "Project Gutenberg" },
+    standard_ebooks: { zh: "Standard Ebooks", en: "Standard Ebooks" },
+    manybooks: { zh: "ManyBooks", en: "ManyBooks" },
+    openstax: { zh: "OpenStax", en: "OpenStax" },
+    internet_archive_texts: { zh: "Internet Archive Texts", en: "Internet Archive Texts" },
+    openlibrary: { zh: "Open Library", en: "Open Library" },
+    google_books: { zh: "Google Books", en: "Google Books" },
+    wikisource: { zh: "Wikisource", en: "Wikisource" },
+    douban_read: { zh: "豆瓣阅读", en: "Douban Read" },
+    wechat_read: { zh: "微信读书网页版", en: "WeChat Read (Web)" },
+    ia_bookreader: { zh: "Internet Archive BookReader", en: "Internet Archive BookReader" },
+    douban_books: { zh: "豆瓣读书", en: "Douban Books" },
+    book_list_weekly: { zh: "书单来了", en: "Book List Weekly" },
+    goodreads: { zh: "Goodreads", en: "Goodreads" },
+    storygraph: { zh: "The StoryGraph", en: "The StoryGraph" },
+    fantastic_fiction: { zh: "Fantastic Fiction", en: "Fantastic Fiction" },
+    what_should_i_read: { zh: "What Should I Read Next", en: "What Should I Read Next" },
+    mangadex: { zh: "MangaDex", en: "MangaDex" },
+    comic_walker: { zh: "ComicWalker", en: "ComicWalker" },
+    tencent_comics: { zh: "腾讯动漫", en: "Tencent Comics" },
+    bilibili_manga: { zh: "哔哩哔哩漫画", en: "Bilibili Manga" },
+    manhuagui: { zh: "Manhuagui", en: "Manhuagui" },
+    shiyue_magazine: { zh: "十月", en: "October Magazine" },
+    cngeography: { zh: "中国国家地理", en: "Chinese National Geography" },
+    natural_history_mag: { zh: "博物", en: "Natural History" },
+    google_scholar: { zh: "Google Scholar", en: "Google Scholar" },
+    doaj: { zh: "DOAJ", en: "DOAJ" },
+    jstor_open: { zh: "JSTOR Open Content", en: "JSTOR Open Content" },
+    pubmed: { zh: "PubMed", en: "PubMed" },
+    arxiv: { zh: "arXiv", en: "arXiv" },
+    semantic_scholar: { zh: "Semantic Scholar", en: "Semantic Scholar" },
+    chinese_text_project: { zh: "中国哲学书电子化计划", en: "Chinese Text Project" },
+    handian_classics: { zh: "汉典古籍", en: "Han Dian Classics" },
+    ancientbooks: { zh: "中华经典古籍库（公开信息）", en: "Chinese Classics Database (Info)" },
+    wikisource_classics: { zh: "Wikisource 古籍", en: "Wikisource Classics" },
+    nlc_classics: { zh: "中华古籍资源库", en: "Chinese Ancient Books Resources" },
+    handian_chongguang: { zh: "汉典重光", en: "Handian Chongguang" },
+    ximalaya: { zh: "喜马拉雅", en: "Ximalaya" },
+    lrts: { zh: "懒人听书", en: "LRTS Audiobooks" },
+    wechat_listen: { zh: "微信听书", en: "WeChat Listen" },
+    tomato_audiobooks: { zh: "番茄畅听", en: "Tomato Audiobooks" },
+    librivox: { zh: "LibriVox", en: "LibriVox" },
+    loyal_books: { zh: "Loyal Books", en: "Loyal Books" },
+    spotify_audiobooks: { zh: "Spotify Audiobooks", en: "Spotify Audiobooks" },
+    audible: { zh: "Audible", en: "Audible" },
+    calibre: { zh: "Calibre", en: "Calibre" },
+    sigil: { zh: "Sigil", en: "Sigil" },
+    pandoc: { zh: "Pandoc", en: "Pandoc" },
+    cloudconvert: { zh: "CloudConvert", en: "CloudConvert" },
+    zamzar: { zh: "Zamzar", en: "Zamzar" },
+    koodo_reader: { zh: "Koodo Reader", en: "Koodo Reader" },
+  },
+  siteDesc: {
+    zlibrary: { zh: "海量电子书，支持多种格式下载。", en: "Large ebook collection with multiple formats." },
+    annas_archive: { zh: "人类历史上最大的完全开放的图书馆。", en: "The largest fully open library in human history." },
+    liber3: { zh: "海量电子书。", en: "Massive ebook library." },
+    xiaolipan: { zh: "海量电子书，支持多种格式下载。", en: "Large ebook collection with multiple formats." },
+    "24hbook": { zh: "海量电子书。", en: "Massive ebook collection." },
+    book345: { zh: "海量电子书。", en: "Massive ebook collection." },
+    zhishikoo: { zh: "海量电子书，支持多种格式下载。", en: "Large ebook collection with multiple formats." },
+    gutenberg: { zh: "海量公版电子书，支持多种格式下载。", en: "Public domain ebooks with multiple formats." },
+    standard_ebooks: { zh: "高质量排版的免费经典电子书。", en: "High-quality typeset classics for free." },
+    manybooks: { zh: "提供免费和折扣电子书下载与推荐。", en: "Free and discounted ebooks for download and discovery." },
+    openstax: { zh: "开放教材资源，适合学习与教学。", en: "Open textbook resources for learning and teaching." },
+    internet_archive_texts: { zh: "互联网档案馆文献区，覆盖多语种图书。", en: "Internet Archive texts collection across languages." },
+    openlibrary: { zh: "支持在线借阅与阅读海量图书。", en: "Borrow and read millions of books online." },
+    google_books: { zh: "图书检索与部分在线预览。", en: "Search books with limited online previews." },
+    wikisource: { zh: "维基文库，开放文本在线阅读。", en: "Open text library for online reading." },
+    douban_read: { zh: "中文书城与原创作品在线阅读平台。", en: "Chinese bookstore and original works platform." },
+    wechat_read: { zh: "腾讯微信读书 Web 端，支持笔记与划线。", en: "WeChat Read web app with notes and highlights." },
+    ia_bookreader: { zh: "互联网档案馆在线阅读入口，覆盖历史文献与图书。", en: "Online reader for Internet Archive books and documents." },
+    douban_books: { zh: "中文书评、书单与高频热门推荐。", en: "Chinese reviews, lists, and popular picks." },
+    book_list_weekly: { zh: "中文书评、书单与高频热门推荐。", en: "Chinese reviews, lists, and popular picks." },
+    goodreads: { zh: "全球读书社区，擅长英文书单发现。", en: "Global reading community for English book lists." },
+    storygraph: { zh: "可视化阅读偏好分析和书籍推荐。", en: "Visualized reading preferences and recommendations." },
+    fantastic_fiction: { zh: "按作者和系列发现相关作品。", en: "Discover books by author and series." },
+    what_should_i_read: { zh: "输入一本书，发现相似书籍。", en: "Enter a book to find similar reads." },
+    mangadex: { zh: "多语言漫画阅读与更新追踪。", en: "Multilingual manga reading and update tracking." },
+    comic_walker: { zh: "日本官方漫画在线平台（部分免费）。", en: "Official Japanese manga platform (some free)." },
+    tencent_comics: { zh: "国漫与日漫内容平台。", en: "Chinese and Japanese comics platform." },
+    bilibili_manga: { zh: "国漫与日漫内容平台。", en: "Chinese and Japanese comics platform." },
+    manhuagui: { zh: "漫画资源聚合平台。", en: "Comics aggregation platform." },
+    shiyue_magazine: { zh: "大型文学期刊。", en: "Large literary magazine." },
+    cngeography: { zh: "大型科普杂志。", en: "Popular science magazine." },
+    natural_history_mag: { zh: "大型科普杂志。", en: "Popular science magazine." },
+    google_scholar: { zh: "学术论文检索入口，覆盖广泛。", en: "Academic search engine across disciplines." },
+    doaj: { zh: "开放获取期刊目录。", en: "Directory of Open Access Journals." },
+    jstor_open: { zh: "JSTOR 开放内容资源页面。", en: "JSTOR open content resources." },
+    pubmed: { zh: "医学与生命科学论文检索数据库。", en: "Biomedical literature database." },
+    arxiv: { zh: "预印本论文平台，理工科常用。", en: "Preprint platform widely used in STEM." },
+    semantic_scholar: { zh: "AI 驱动的论文检索与引用分析。", en: "AI-powered paper search and citation analysis." },
+    chinese_text_project: { zh: "中文古籍在线检索与阅读。", en: "Search and read Chinese classics online." },
+    handian_classics: { zh: "汉典古籍页面与古文辅助。", en: "Handian classics and classical Chinese tools." },
+    ancientbooks: { zh: "古籍数字化资源入口与资讯。", en: "Portal and news for digitized classics." },
+    wikisource_classics: { zh: "维基文库中文古籍公开文本。", en: "Chinese classics on Wikisource." },
+    nlc_classics: { zh: "中华古籍保护计划。", en: "Chinese classics preservation program." },
+    handian_chongguang: { zh: "古籍数字化平台。", en: "Digitized classics platform." },
+    ximalaya: { zh: "中文有声内容平台，含有声书频道。", en: "Chinese audio platform with audiobooks." },
+    lrts: { zh: "中文听书平台，涵盖小说和知识内容。", en: "Chinese audiobook platform covering novels and knowledge." },
+    wechat_listen: { zh: "微信官方有声内容平台。", en: "Official WeChat audio platform." },
+    tomato_audiobooks: { zh: "今日头条有声内容平台。", en: "Toutiao audio platform." },
+    librivox: { zh: "志愿者录制的免费公版有声书。", en: "Volunteer-recorded public domain audiobooks." },
+    loyal_books: { zh: "经典有声书与电子书结合平台。", en: "Classics with audiobooks and ebooks." },
+    spotify_audiobooks: { zh: "Spotify 的有声书分类入口。", en: "Spotify audiobooks category." },
+    audible: { zh: "亚马逊有声书平台，资源丰富。", en: "Amazon audiobook platform." },
+    calibre: { zh: "本地电子书管理、转换、传输全能工具。", en: "All-in-one ebook manager, converter, and transfer tool." },
+    sigil: { zh: "EPUB 编辑器，适合制作电子书。", en: "EPUB editor for making ebooks." },
+    pandoc: { zh: "文档格式转换利器，可处理 Markdown、EPUB、PDF。", en: "Document conversion for Markdown, EPUB, and PDF." },
+    cloudconvert: { zh: "在线文件格式转换，支持电子书格式。", en: "Online file conversion with ebook formats." },
+    zamzar: { zh: "多格式文件转换，适合临时处理电子书。", en: "Multi-format converter for quick tasks." },
+    koodo_reader: { zh: "跨平台电子书阅读器，支持笔记和高亮。", en: "Cross-platform reader with notes and highlights." },
+  },
+  siteTags: {
+    chinese_english: { zh: "中英文", en: "Chinese/English" },
+    epub_mobi_azw3_pdf: { zh: "EPUB/MOBI/AZW3/PDF", en: "EPUB/MOBI/AZW3/PDF" },
+    epub: { zh: "EPUB", en: "EPUB" },
+    epub_pdf: { zh: "EPUB/PDF", en: "EPUB/PDF" },
+    public_domain: { zh: "公版书", en: "Public domain" },
+    english: { zh: "英文", en: "English" },
+    typesetting: { zh: "排版", en: "Typesetting" },
+    free: { zh: "免费", en: "Free" },
+    fiction: { zh: "小说", en: "Fiction" },
+    downloads: { zh: "下载", en: "Downloads" },
+    textbooks: { zh: "教材", en: "Textbooks" },
+    learning: { zh: "学习", en: "Learning" },
+    pdf: { zh: "PDF", en: "PDF" },
+    archive: { zh: "档案", en: "Archive" },
+    history: { zh: "历史", en: "History" },
+    online_reading: { zh: "在线阅读", en: "Online reading" },
+    lending: { zh: "借阅", en: "Lending" },
+    search: { zh: "检索", en: "Search" },
+    preview: { zh: "预览", en: "Preview" },
+    multilingual: { zh: "多语言", en: "Multilingual" },
+    library: { zh: "文库", en: "Library" },
+    public_domain_ol: { zh: "公版", en: "Public domain" },
+    online: { zh: "在线", en: "Online" },
+    chinese: { zh: "中文", en: "Chinese" },
+    original: { zh: "原创", en: "Original" },
+    bookstore: { zh: "书城", en: "Bookstore" },
+    notes: { zh: "笔记", en: "Notes" },
+    reading: { zh: "阅读", en: "Reading" },
+    archive_ol: { zh: "档案馆", en: "Archive" },
+    reviews: { zh: "书评", en: "Reviews" },
+    ratings: { zh: "评分", en: "Ratings" },
+    recommendations: { zh: "推荐", en: "Recommendations" },
+    community: { zh: "社区", en: "Community" },
+    visualization: { zh: "可视化", en: "Visualization" },
+    authors: { zh: "作者", en: "Authors" },
+    series: { zh: "系列", en: "Series" },
+    discovery: { zh: "发现", en: "Discovery" },
+    manga: { zh: "漫画", en: "Manga" },
+    official: { zh: "官方", en: "Official" },
+    comics: { zh: "漫画", en: "Comics" },
+    serials: { zh: "连载", en: "Serials" },
+    updates: { zh: "更新", en: "Updates" },
+    magazine: { zh: "杂志", en: "Magazine" },
+    literature: { zh: "文学", en: "Literature" },
+    geography: { zh: "地理", en: "Geography" },
+    biology: { zh: "生物", en: "Biology" },
+    papers: { zh: "论文", en: "Papers" },
+    academic: { zh: "学术", en: "Academic" },
+    open_access: { zh: "开源期刊", en: "Open access" },
+    oa: { zh: "OA", en: "OA" },
+    journals: { zh: "期刊", en: "Journals" },
+    humanities: { zh: "人文", en: "Humanities" },
+    open: { zh: "开放", en: "Open" },
+    medicine: { zh: "医学", en: "Medicine" },
+    preprints: { zh: "预印本", en: "Preprints" },
+    stem: { zh: "理工", en: "STEM" },
+    research: { zh: "科研", en: "Research" },
+    ai: { zh: "AI", en: "AI" },
+    citations: { zh: "引用", en: "Citations" },
+    classics: { zh: "古籍", en: "Classics" },
+    classical_chinese: { zh: "古文", en: "Classical Chinese" },
+    tools: { zh: "工具", en: "Tools" },
+    handian: { zh: "汉典", en: "Handian" },
+    digitization: { zh: "数字化", en: "Digitization" },
+    resources: { zh: "资源", en: "Resources" },
+    chinese_audio: { zh: "中文", en: "Chinese" },
+    audiobooks: { zh: "有声书", en: "Audiobooks" },
+    listening: { zh: "听书", en: "Listening" },
+    mobile: { zh: "移动端", en: "Mobile" },
+    public_domain_audio: { zh: "公版", en: "Public domain" },
+    free_audio: { zh: "免费", en: "Free" },
+    subscription: { zh: "订阅", en: "Subscription" },
+    conversion: { zh: "格式转换", en: "Conversion" },
+    management: { zh: "管理", en: "Management" },
+    desktop: { zh: "桌面端", en: "Desktop" },
+    epub_tool: { zh: "EPUB", en: "EPUB" },
+    editing: { zh: "编辑", en: "Editing" },
+    creation: { zh: "制作", en: "Creation" },
+    cli: { zh: "命令行", en: "CLI" },
+    formats: { zh: "格式", en: "Formats" },
+    online_conversion: { zh: "在线转换", en: "Online conversion" },
+    easy: { zh: "便捷", en: "Easy" },
+    reader: { zh: "阅读器", en: "Reader" },
+    crossplatform: { zh: "跨平台", en: "Cross-platform" },
+  },
+  category: {
+    "ebook-downloads": { zh: "电子书下载", en: "Ebook Downloads" },
+    "online-reading": { zh: "电子书在线阅读", en: "Online Reading" },
+    "book-recommendations": { zh: "书单/书籍推荐", en: "Book Lists & Recommendations" },
+    "magazines-comics": { zh: "杂志漫画", en: "Magazines & Comics" },
+    "academic-journals": { zh: "学术期刊", en: "Academic Journals" },
+    "classical-texts": { zh: "数字古籍", en: "Classical Texts" },
+    audiobooks: { zh: "有声书", en: "Audiobooks" },
+    "reading-tools": { zh: "阅读软件/工具", en: "Reading Tools" },
+  },
+  categoryIcon: {
+    "ebook-downloads": "📥",
+    "online-reading": "📖",
+    "book-recommendations": "🧭",
+    "magazines-comics": "📰",
+    "academic-journals": "🧪",
+    "classical-texts": "🏛️",
+    audiobooks: "🎧",
+    "reading-tools": "🛠️",
+  },
 };
-
-const BUILTIN_SITES_EN = [
-  {
-    title: "Z-Library",
-    url: "https://z-library.la/",
-    category: "Ebook Downloads",
-    desc: "Large ebook collection with multiple formats.",
-    tags: ["Chinese/English", "EPUB/MOBI/AZW3/PDF"],
-  },
-  {
-    title: "Anna's Archive",
-    url: "https://zh.annas-archive.li/",
-    category: "Ebook Downloads",
-    desc: "The largest fully open library in human history.",
-    tags: ["Chinese/English", "EPUB"],
-  },
-  {
-    title: "Liber3",
-    url: "https://liber3.eth.limo/#/",
-    category: "Ebook Downloads",
-    desc: "Massive ebook library.",
-    tags: ["Chinese/English", "EPUB"],
-  },
-  {
-    title: "Xiaolipan Search",
-    url: "https://www.xiaolipan.com/index.html",
-    category: "Ebook Downloads",
-    desc: "Large ebook collection with multiple formats.",
-    tags: ["Chinese/English", "EPUB/PDF"],
-  },
-  {
-    title: "24h Book Search",
-    url: "https://24hbook.store/",
-    category: "Ebook Downloads",
-    desc: "Massive ebook collection.",
-    tags: ["Chinese/English", "EPUB"],
-  },
-  {
-    title: "Nameless Books",
-    url: "https://www.book345.com/",
-    category: "Ebook Downloads",
-    desc: "Massive ebook collection.",
-    tags: ["Chinese/English", "EPUB"],
-  },
-  {
-    title: "Book Knowledge Base",
-    url: "https://www.zhishikoo.com/",
-    category: "Ebook Downloads",
-    desc: "Large ebook collection with multiple formats.",
-    tags: ["Chinese/English", "EPUB/MOBI/AZW3/PDF"],
-  },
-  {
-    title: "Project Gutenberg",
-    url: "https://www.gutenberg.org/",
-    category: "Ebook Downloads",
-    desc: "Public domain ebooks with multiple formats.",
-    tags: ["Public domain", "English", "EPUB"],
-  },
-  {
-    title: "Standard Ebooks",
-    url: "https://standardebooks.org/",
-    category: "Ebook Downloads",
-    desc: "High-quality typeset classics for free.",
-    tags: ["Public domain", "Typesetting", "EPUB"],
-  },
-  {
-    title: "ManyBooks",
-    url: "https://manybooks.net/",
-    category: "Ebook Downloads",
-    desc: "Free and discounted ebooks for download and discovery.",
-    tags: ["Free", "Fiction", "Downloads"],
-  },
-  {
-    title: "OpenStax",
-    url: "https://openstax.org/subjects",
-    category: "Ebook Downloads",
-    desc: "Open textbook resources for learning and teaching.",
-    tags: ["Textbooks", "Learning", "PDF"],
-  },
-  {
-    title: "Internet Archive Texts",
-    url: "https://archive.org/details/texts",
-    category: "Ebook Downloads",
-    desc: "Internet Archive texts collection across languages.",
-    tags: ["Archive", "History", "PDF"],
-  },
-  {
-    title: "Open Library",
-    url: "https://openlibrary.org/",
-    category: "Online Reading",
-    desc: "Borrow and read millions of books online.",
-    tags: ["Online reading", "Lending", "English"],
-  },
-  {
-    title: "Google Books",
-    url: "https://books.google.com/",
-    category: "Online Reading",
-    desc: "Search books with limited online previews.",
-    tags: ["Search", "Preview", "Multilingual"],
-  },
-  {
-    title: "Wikisource",
-    url: "https://wikisource.org/",
-    category: "Online Reading",
-    desc: "Open text library for online reading.",
-    tags: ["Library", "Public domain", "Online"],
-  },
-  {
-    title: "Douban Read",
-    url: "https://read.douban.com/",
-    category: "Online Reading",
-    desc: "Chinese bookstore and original works platform.",
-    tags: ["Chinese", "Original", "Bookstore"],
-  },
-  {
-    title: "WeChat Read (Web)",
-    url: "https://weread.qq.com/",
-    category: "Online Reading",
-    desc: "WeChat Read web app with notes and highlights.",
-    tags: ["Chinese", "Notes", "Reading"],
-  },
-  {
-    title: "Internet Archive BookReader",
-    url: "https://archive.org/details/books",
-    category: "Online Reading",
-    desc: "Online reader for Internet Archive books and documents.",
-    tags: ["Online reading", "Archive", "Multilingual"],
-  },
-  {
-    title: "Douban Books",
-    url: "https://book.douban.com/",
-    category: "Book Lists & Recommendations",
-    desc: "Chinese reviews, lists, and popular picks.",
-    tags: ["Reviews", "Ratings", "Recommendations"],
-  },
-  {
-    title: "Book List Weekly",
-    url: "https://mp.weixin.qq.com/s/wy9VRewPCOxzJwto3zHehw",
-    category: "Book Lists & Recommendations",
-    desc: "Chinese reviews, lists, and popular picks.",
-    tags: ["Reviews", "Ratings", "Recommendations"],
-  },
-  {
-    title: "Goodreads",
-    url: "https://www.goodreads.com/",
-    category: "Book Lists & Recommendations",
-    desc: "Global reading community for English book lists.",
-    tags: ["English", "Community", "Ratings"],
-  },
-  {
-    title: "The StoryGraph",
-    url: "https://app.thestorygraph.com/",
-    category: "Book Lists & Recommendations",
-    desc: "Visualized reading preferences and recommendations.",
-    tags: ["Recommendations", "Visualization", "Community"],
-  },
-  {
-    title: "Fantastic Fiction",
-    url: "https://www.fantasticfiction.com/",
-    category: "Book Lists & Recommendations",
-    desc: "Discover books by author and series.",
-    tags: ["Fiction", "Authors", "Series"],
-  },
-  {
-    title: "What Should I Read Next",
-    url: "https://www.whatshouldireadnext.com/",
-    category: "Book Lists & Recommendations",
-    desc: "Enter a book to find similar reads.",
-    tags: ["Recommendations", "Discovery", "English"],
-  },
-  {
-    title: "MangaDex",
-    url: "https://mangadex.org/",
-    category: "Magazines & Comics",
-    desc: "Multilingual manga reading and update tracking.",
-    tags: ["Manga", "Multilingual", "Online"],
-  },
-  {
-    title: "ComicWalker",
-    url: "https://comic-walker.com/",
-    category: "Magazines & Comics",
-    desc: "Official Japanese manga platform (some free).",
-    tags: ["Manga", "Official", "Online"],
-  },
-  {
-    title: "Tencent Comics",
-    url: "https://ac.qq.com/",
-    category: "Magazines & Comics",
-    desc: "Chinese and Japanese comics platform.",
-    tags: ["Comics", "Chinese", "Serials"],
-  },
-  {
-    title: "Bilibili Manga",
-    url: "https://manga.bilibili.com/",
-    category: "Magazines & Comics",
-    desc: "Chinese and Japanese comics platform.",
-    tags: ["Comics", "Chinese", "Serials"],
-  },
-  {
-    title: "Manhuagui",
-    url: "https://www.manhuagui.com/",
-    category: "Magazines & Comics",
-    desc: "Comics aggregation platform.",
-    tags: ["Comics", "Chinese", "Updates"],
-  },
-  {
-    title: "October Magazine",
-    url: "https://shiyuezazhi.com/sy/index.html",
-    category: "Magazines & Comics",
-    desc: "Large literary magazine.",
-    tags: ["Magazine", "Chinese", "Literature"],
-  },
-  {
-    title: "Chinese National Geography",
-    url: "https://www.dili360.com/Cng/index/index.htm",
-    category: "Magazines & Comics",
-    desc: "Popular science magazine.",
-    tags: ["Magazine", "Chinese", "Geography"],
-  },
-  {
-    title: "Natural History",
-    url: "https://www.dili360.com/nh/mag/detail/1001.htm",
-    category: "Magazines & Comics",
-    desc: "Popular science magazine.",
-    tags: ["Magazine", "Chinese", "Biology"],
-  },
-  {
-    title: "Google Scholar",
-    url: "https://scholar.google.com/",
-    category: "Academic Journals",
-    desc: "Academic search engine across disciplines.",
-    tags: ["Papers", "Search", "Academic"],
-  },
-  {
-    title: "DOAJ",
-    url: "https://doaj.org/",
-    category: "Academic Journals",
-    desc: "Directory of Open Access Journals.",
-    tags: ["Open access", "OA", "Academic"],
-  },
-  {
-    title: "JSTOR Open Content",
-    url: "https://about.jstor.org/oa-and-free/",
-    category: "Academic Journals",
-    desc: "JSTOR open content resources.",
-    tags: ["Journals", "Humanities", "Open"],
-  },
-  {
-    title: "PubMed",
-    url: "https://pubmed.ncbi.nlm.nih.gov/",
-    category: "Academic Journals",
-    desc: "Biomedical literature database.",
-    tags: ["Medicine", "Search", "Papers"],
-  },
-  {
-    title: "arXiv",
-    url: "https://arxiv.org/",
-    category: "Academic Journals",
-    desc: "Preprint platform widely used in STEM.",
-    tags: ["Preprints", "STEM", "Research"],
-  },
-  {
-    title: "Semantic Scholar",
-    url: "https://www.semanticscholar.org/",
-    category: "Academic Journals",
-    desc: "AI-powered paper search and citation analysis.",
-    tags: ["AI", "Citations", "Academic"],
-  },
-  {
-    title: "Chinese Text Project",
-    url: "https://ctext.org/zhs",
-    category: "Classical Texts",
-    desc: "Search and read Chinese classics online.",
-    tags: ["Classics", "Chinese", "Search"],
-  },
-  {
-    title: "Han Dian Classics",
-    url: "https://gj.zdic.net/",
-    category: "Classical Texts",
-    desc: "Handian classics and classical Chinese tools.",
-    tags: ["Classical Chinese", "Tools", "Handian"],
-  },
-  {
-    title: "Chinese Classics Database (Info)",
-    url: "https://www.ancientbooks.cn/",
-    category: "Classical Texts",
-    desc: "Portal and news for digitized classics.",
-    tags: ["Classics", "Digitization", "Resources"],
-  },
-  {
-    title: "Wikisource Classics",
-    url: "https://zh.wikisource.org/",
-    category: "Classical Texts",
-    desc: "Chinese classics on Wikisource.",
-    tags: ["Classics", "Open", "Online"],
-  },
-  {
-    title: "Chinese Ancient Books Resources",
-    url: "https://www.nlc.cn/pcab/zy/zhgj_zyk/",
-    category: "Classical Texts",
-    desc: "Chinese classics preservation program.",
-    tags: ["Classics", "Open", "Online"],
-  },
-  {
-    title: "Handian Chongguang",
-    url: "https://wenyuan.aliyun.com/home",
-    category: "Classical Texts",
-    desc: "Digitized classics platform.",
-    tags: ["Classics", "Open", "Online"],
-  },
-  {
-    title: "Ximalaya",
-    url: "https://www.ximalaya.com/",
-    category: "Audiobooks",
-    desc: "Chinese audio platform with audiobooks.",
-    tags: ["Chinese", "Audiobooks", "Listening"],
-  },
-  {
-    title: "LRTS Audiobooks",
-    url: "https://www.lrts.me/",
-    category: "Audiobooks",
-    desc: "Chinese audiobook platform covering novels and knowledge.",
-    tags: ["Audiobooks", "Chinese", "Mobile"],
-  },
-  {
-    title: "WeChat Listen",
-    url: "https://at.qq.com/",
-    category: "Audiobooks",
-    desc: "Official WeChat audio platform.",
-    tags: ["Audiobooks", "Chinese", "Mobile"],
-  },
-  {
-    title: "Tomato Audiobooks",
-    url: "https://novelfm.changdunovel.com/",
-    category: "Audiobooks",
-    desc: "Toutiao audio platform.",
-    tags: ["Audiobooks", "Chinese", "Mobile"],
-  },
-  {
-    title: "LibriVox",
-    url: "https://librivox.org/",
-    category: "Audiobooks",
-    desc: "Volunteer-recorded public domain audiobooks.",
-    tags: ["Audiobooks", "Public domain", "Free"],
-  },
-  {
-    title: "Loyal Books",
-    url: "https://www.loyalbooks.com/",
-    category: "Audiobooks",
-    desc: "Classics with audiobooks and ebooks.",
-    tags: ["Classics", "Audiobooks", "Free"],
-  },
-  {
-    title: "Spotify Audiobooks",
-    url: "https://open.spotify.com/genre/audiobooks-page",
-    category: "Audiobooks",
-    desc: "Spotify audiobooks category.",
-    tags: ["Audiobooks", "Subscription", "English"],
-  },
-  {
-    title: "Audible",
-    url: "https://www.audible.com/",
-    category: "Audiobooks",
-    desc: "Amazon audiobook platform.",
-    tags: ["Audiobooks", "English", "Subscription"],
-  },
-  {
-    title: "Calibre",
-    url: "https://calibre-ebook.com/",
-    category: "Reading Tools",
-    desc: "All-in-one ebook manager, converter, and transfer tool.",
-    tags: ["Conversion", "Management", "Desktop"],
-  },
-  {
-    title: "Sigil",
-    url: "https://sigil-ebook.com/",
-    category: "Reading Tools",
-    desc: "EPUB editor for making ebooks.",
-    tags: ["EPUB", "Editing", "Creation"],
-  },
-  {
-    title: "Pandoc",
-    url: "https://pandoc.org/",
-    category: "Reading Tools",
-    desc: "Document conversion for Markdown, EPUB, and PDF.",
-    tags: ["Conversion", "CLI", "Formats"],
-  },
-  {
-    title: "CloudConvert",
-    url: "https://cloudconvert.com/",
-    category: "Reading Tools",
-    desc: "Online file conversion with ebook formats.",
-    tags: ["Online conversion", "Formats", "Tools"],
-  },
-  {
-    title: "Zamzar",
-    url: "https://www.zamzar.com/",
-    category: "Reading Tools",
-    desc: "Multi-format converter for quick tasks.",
-    tags: ["Online conversion", "Formats", "Easy"],
-  },
-  {
-    title: "Koodo Reader",
-    url: "https://www.koodoreader.com/",
-    category: "Reading Tools",
-    desc: "Cross-platform reader with notes and highlights.",
-    tags: ["Reader", "Cross-platform", "Notes"],
-  },
-];
 
 const LANGUAGES = {
   zh: {
@@ -913,9 +689,6 @@ const LANGUAGES = {
       description:
         "找书吧：聚合电子书下载、在线阅读、书单推荐、学术期刊与阅读工具的书籍导航站。",
     },
-    categoryOrder: CATEGORY_ORDER_ZH,
-    categoryIcon: CATEGORY_ICON_ZH,
-    sites: BUILTIN_SITES_ZH,
     noDesc: "暂无简介",
     tagsFallback: "#书籍资源",
   },
@@ -977,9 +750,6 @@ const LANGUAGES = {
       description:
         "Zhaoshuba: a curated directory for ebook downloads, online reading, lists, journals, classics, audiobooks, and tools.",
     },
-    categoryOrder: CATEGORY_ORDER_EN,
-    categoryIcon: CATEGORY_ICON_EN,
-    sites: BUILTIN_SITES_EN,
     noDesc: "No description",
     tagsFallback: "#books",
   },
@@ -997,6 +767,7 @@ const state = {
   activeCategory: "",
   sidebarCategory: "",
   sidebarCollapsed: loadSidebarCollapsed(),
+  sitesCache: null,
 };
 
 state.activeCategory = getAllLabel();
@@ -1046,6 +817,7 @@ const refs = {
   footerAboutLink: document.getElementById("footerAboutLink"),
   footerPrivacyLink: document.getElementById("footerPrivacyLink"),
   metaDescription: document.querySelector('meta[name="description"]'),
+  backToTop: document.getElementById("backToTop"),
 };
 
 init();
@@ -1057,10 +829,20 @@ function init() {
   render();
 }
 
+function debounce(fn, delay) {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => fn(...args), delay);
+  };
+}
+
+const debouncedRender = debounce(() => render(), 150);
+
 function bindEvents() {
   refs.searchInput.addEventListener("input", (event) => {
     state.keyword = event.target.value.trim().toLowerCase();
-    render();
+    debouncedRender();
   });
 
   refs.themeToggle.addEventListener("click", toggleTheme);
@@ -1071,6 +853,11 @@ function bindEvents() {
   if (refs.donationClose && refs.donationCard) {
     refs.donationClose.addEventListener("click", () => {
       refs.donationCard.classList.add("is-hidden");
+    });
+  }
+  if (refs.backToTop) {
+    refs.backToTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
   }
 
@@ -1092,6 +879,26 @@ function bindEvents() {
 
   window.addEventListener("scroll", onScrollChanged, { passive: true });
   window.addEventListener("resize", onResizeChanged);
+
+  refs.sidebarNav.addEventListener("keydown", (e) => {
+    const buttons = Array.from(refs.sidebarNav.querySelectorAll(".sidebar-link:not(:disabled)"));
+    const currentIndex = buttons.findIndex(b => b === document.activeElement);
+    if (currentIndex === -1) return;
+    let nextIndex = currentIndex;
+    if (e.key === "ArrowDown" || e.key === "ArrowRight") {
+      nextIndex = (currentIndex + 1) % buttons.length;
+    } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
+      nextIndex = (currentIndex - 1 + buttons.length) % buttons.length;
+    } else if (e.key === "Home") {
+      nextIndex = 0;
+    } else if (e.key === "End") {
+      nextIndex = buttons.length - 1;
+    } else {
+      return;
+    }
+    e.preventDefault();
+    buttons[nextIndex].focus();
+  });
 }
 
 function isTypingTarget(target) {
@@ -1111,24 +918,51 @@ function getAllLabel() {
   return getLangConfig().allLabel;
 }
 
+function t(keyObj, lang) {
+  return keyObj[lang] || keyObj.zh || "";
+}
+
 function getAllSites() {
-  return getLangConfig().sites.map((site, index) => ({
-    ...site,
+  if (state.sitesCache) {
+    return state.sitesCache;
+  }
+  const lang = state.language;
+  state.sitesCache = SITES.map((site, index) => ({
     id: `site-${index}`,
+    url: site.url,
+    category: site.category,
+    title: t(TRANSLATIONS.siteTitle[site.titleKey], lang),
+    desc: t(TRANSLATIONS.siteDesc[site.descKey], lang),
+    tags: site.tagsKeys.map(k => t(TRANSLATIONS.siteTags[k], lang)),
   }));
+  return state.sitesCache;
+}
+
+function invalidateSitesCache() {
+  state.sitesCache = null;
 }
 
 function getCategories(sites) {
+  const lang = state.language;
   const extraCategories = [];
-  const categoryOrder = getLangConfig().categoryOrder;
-  const seen = new Set(categoryOrder);
+  const categoryKeys = Object.keys(TRANSLATIONS.category);
+  const seen = new Set(categoryKeys);
   for (const site of sites) {
     if (!seen.has(site.category)) {
       seen.add(site.category);
       extraCategories.push(site.category);
     }
   }
-  return [...categoryOrder, ...extraCategories];
+  const ordered = categoryKeys.filter(k => TRANSLATIONS.category[k][lang]);
+  return [...ordered, ...extraCategories];
+}
+
+function getCategoryName(categoryKey, lang) {
+  return TRANSLATIONS.category[categoryKey]?.[lang] || categoryKey || "";
+}
+
+function getCategoryIcon(categoryKey) {
+  return TRANSLATIONS.categoryIcon[categoryKey] || "📚";
 }
 
 function siteMatchesKeyword(site, keyword) {
@@ -1183,7 +1017,8 @@ function createCategoryChip(category, count) {
   if (category === getChipActiveCategory()) {
     chip.classList.add("active");
   }
-  chip.textContent = `${category} · ${count}`;
+  const displayName = category === getAllLabel() ? category : getCategoryName(category, state.language);
+  chip.textContent = `${displayName} · ${count}`;
   chip.addEventListener("click", () => {
     state.activeCategory = category;
     state.sidebarCategory = category;
@@ -1210,6 +1045,8 @@ function createSidebarItem(category, count) {
   btn.className = "sidebar-link";
   btn.dataset.category = category;
   btn.title = category;
+  btn.setAttribute("role", "tab");
+  btn.setAttribute("aria-selected", category === state.sidebarCategory ? "true" : "false");
   if (category === state.sidebarCategory) {
     btn.classList.add("active");
   }
@@ -1221,11 +1058,10 @@ function createSidebarItem(category, count) {
   label.className = "sidebar-main";
   const icon = document.createElement("span");
   icon.className = "sidebar-icon";
-  const iconMap = getLangConfig().categoryIcon;
-  icon.textContent = iconMap[category] || "📚";
+  icon.textContent = getCategoryIcon(category);
   const text = document.createElement("span");
   text.className = "sidebar-text";
-  text.textContent = category;
+  text.textContent = getCategoryName(category, state.language);
   label.append(icon, text);
 
   const number = document.createElement("small");
@@ -1260,7 +1096,6 @@ function renderSections(visibleSites, categories) {
   refs.sectionsRoot.textContent = "";
   const grouped = new Map();
   const lang = getLangConfig();
-  const iconMap = lang.categoryIcon;
 
   for (const category of categories) {
     grouped.set(category, []);
@@ -1287,7 +1122,7 @@ function renderSections(visibleSites, categories) {
     head.className = "section-head";
 
     const title = document.createElement("h2");
-    title.textContent = `${iconMap[category] || "📚"} ${category}`;
+    title.textContent = `${getCategoryIcon(category)} ${getCategoryName(category, state.language)}`;
 
     const count = document.createElement("span");
     count.textContent = `${items.length}${lang.siteCountSuffix}`;
@@ -1308,6 +1143,19 @@ function renderSections(visibleSites, categories) {
   refs.emptyState.hidden = sectionCount !== 0;
 }
 
+function escapeHtml(str) {
+  const div = document.createElement("div");
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+function highlightKeyword(text, keyword) {
+  if (!keyword) return escapeHtml(text);
+  const escaped = escapeHtml(text);
+  const regex = new RegExp(`(${keyword.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`, "gi");
+  return escaped.replace(regex, "<mark>$1</mark>");
+}
+
 function createSiteCard(site) {
   const lang = getLangConfig();
   const wrapper = document.createElement("article");
@@ -1321,11 +1169,11 @@ function createSiteCard(site) {
 
   const title = document.createElement("span");
   title.className = "site-title";
-  title.textContent = site.title;
+  title.innerHTML = highlightKeyword(site.title, state.keyword);
 
   const desc = document.createElement("span");
   desc.className = "site-desc";
-  desc.textContent = site.desc || lang.noDesc;
+  desc.innerHTML = highlightKeyword(site.desc || lang.noDesc, state.keyword);
 
   const tags = document.createElement("span");
   tags.className = "site-tags";
@@ -1350,8 +1198,15 @@ function onScrollChanged() {
   scrollSpy.ticking = true;
   requestAnimationFrame(() => {
     updateSidebarFromScroll();
+    updateBackToTopVisibility();
     scrollSpy.ticking = false;
   });
+}
+
+function updateBackToTopVisibility() {
+  if (!refs.backToTop) return;
+  const shouldShow = window.scrollY > 400;
+  refs.backToTop.classList.toggle("visible", shouldShow);
 }
 
 function onResizeChanged() {
@@ -1401,7 +1256,9 @@ function syncSidebarActiveUI() {
   const buttons = refs.sidebarNav.querySelectorAll(".sidebar-link");
   for (const button of buttons) {
     const category = button.dataset.category;
-    button.classList.toggle("active", category === state.sidebarCategory);
+    const isActive = category === state.sidebarCategory;
+    button.classList.toggle("active", isActive);
+    button.setAttribute("aria-selected", isActive ? "true" : "false");
   }
 }
 
@@ -1503,6 +1360,7 @@ function toggleLanguage() {
   state.activeCategory = getAllLabel();
   state.sidebarCategory = getAllLabel();
   refs.searchInput.value = "";
+  invalidateSitesCache();
   applyLanguage();
   render();
   window.scrollTo({ top: 0, behavior: "smooth" });

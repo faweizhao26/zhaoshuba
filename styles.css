@@ -16,6 +16,15 @@
   --radius-xl: 22px;
   --radius-lg: 14px;
   --radius-sm: 10px;
+  --hero-bg-1: #18245c;
+  --hero-bg-2: #1f215f;
+  --hero-linear-start: rgba(255, 255, 255, 0.06);
+  --hero-radial-color: var(--brand-strong);
+  --hero-radial-color2: color-mix(in srgb, var(--brand-strong) 14%, transparent);
+  --hero-svg1-stroke: #9db0ff;
+  --hero-svg1-opacity: 0.23;
+  --hero-svg2-stroke: #a9bcff;
+  --hero-svg2-opacity: 0.18;
 }
 
 html[data-theme="light"] {
@@ -33,6 +42,45 @@ html[data-theme="light"] {
   --focus-ring: 0 0 0 3px rgba(88, 112, 240, 0.18);
   --shadow: 0 12px 30px rgba(57, 79, 150, 0.14);
   --shadow-soft: 0 8px 20px rgba(68, 95, 170, 0.11);
+  --hero-bg-1: #eaf0ff;
+  --hero-bg-2: #e8eeff;
+  --hero-linear-start: rgba(255, 255, 255, 0.18);
+  --hero-radial-color: var(--brand);
+  --hero-radial-color2: color-mix(in srgb, var(--brand) 19%, transparent);
+  --hero-svg1-stroke: #637ad3;
+  --hero-svg1-opacity: 0.2;
+  --hero-svg2-stroke: #516cc8;
+  --hero-svg2-opacity: 0.15;
+  --bg-circle-1: #7a4bff;
+  --bg-circle-2: #2ec2ff;
+}
+
+html[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f4f7ff;
+  --bg-soft: #eaf0ff;
+  --card: rgba(255, 255, 255, 0.78);
+  --card-strong: rgba(255, 255, 255, 0.95);
+  --text: #1f2747;
+  --text-soft: #55638d;
+  --line: rgba(70, 92, 176, 0.19);
+  --brand: #4f67ff;
+  --brand-strong: #7a4dff;
+  --ok: #0ca36f;
+  --focus-ring: 0 0 0 3px rgba(88, 112, 240, 0.18);
+  --shadow: 0 12px 30px rgba(57, 79, 150, 0.14);
+  --shadow-soft: 0 8px 20px rgba(68, 95, 170, 0.11);
+  --hero-bg-1: #eaf0ff;
+  --hero-bg-2: #e8eeff;
+  --hero-linear-start: rgba(255, 255, 255, 0.18);
+  --hero-radial-color: var(--brand);
+  --hero-radial-color2: color-mix(in srgb, var(--brand) 19%, transparent);
+  --hero-svg1-stroke: #637ad3;
+  --hero-svg1-opacity: 0.2;
+  --hero-svg2-stroke: #516cc8;
+  --hero-svg2-opacity: 0.15;
+  --bg-circle-1: #4f67ff;
+  --bg-circle-2: #7a4dff;
 }
 
 * {
@@ -54,8 +102,8 @@ body {
     "Microsoft YaHei",
     system-ui,
     sans-serif;
-  background: radial-gradient(1200px 620px at 10% -20%, #18245c 0%, transparent 62%),
-    radial-gradient(920px 640px at 100% 2%, #1f215f 0%, transparent 56%), var(--bg);
+  background: radial-gradient(1200px 620px at 10% -20%, var(--hero-bg-1) 0%, transparent 62%),
+    radial-gradient(920px 640px at 100% 2%, var(--hero-bg-2) 0%, transparent 56%), var(--bg);
   color: var(--text);
 }
 
@@ -89,7 +137,7 @@ body::before {
   left: -90px;
   width: 360px;
   height: 360px;
-  background: #7a4bff;
+  background: var(--bg-circle-1);
 }
 
 .bg-circle-2 {
@@ -97,7 +145,7 @@ body::before {
   top: 120px;
   width: 330px;
   height: 330px;
-  background: #2ec2ff;
+  background: var(--bg-circle-2);
 }
 
 .container {
@@ -374,10 +422,10 @@ html[lang="en"] .chip {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 30%),
+    linear-gradient(180deg, var(--hero-linear-start), transparent 30%),
     radial-gradient(
       420px 230px at 92% 4%,
-      color-mix(in srgb, var(--brand-strong) 14%, transparent) 0%,
+      var(--hero-radial-color2) 0%,
       transparent 72%
     ),
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120' fill='none'%3E%3Cg opacity='0.23' stroke='%239db0ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 35c10-4 22-4 32 0v42c-10-4-22-4-32 0z'/%3E%3Cpath d='M100 35c-10-4-22-4-32 0v42c10-4 22-4 32 0z'/%3E%3Cpath d='M60 35v42'/%3E%3C/g%3E%3C/svg%3E"),
@@ -905,6 +953,13 @@ main {
   color: color-mix(in srgb, var(--ok) 70%, var(--text));
 }
 
+mark {
+  background: color-mix(in srgb, var(--brand) 30%, transparent);
+  color: inherit;
+  border-radius: 3px;
+  padding: 0 2px;
+}
+
 .empty-state {
   margin: 0;
   text-align: center;
@@ -997,6 +1052,38 @@ main {
   font-size: 0.84rem;
   color: var(--text-soft);
   line-height: 1.45;
+}
+
+.back-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--card-strong) 92%, black 8%);
+  color: var(--text);
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.25s ease, transform 0.25s ease, border-color 0.2s ease;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.back-to-top:hover {
+  border-color: color-mix(in srgb, var(--brand) 45%, var(--line));
+  color: #fff;
 }
 
 .feedback {
@@ -1319,10 +1406,6 @@ main {
     padding: 0 11px;
   }
 
-  .overview {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .links-grid {
     grid-template-columns: 1fr;
   }
@@ -1338,6 +1421,24 @@ main {
   .legal-card {
     padding: 16px;
   }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-soft);
+}
+
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--brand) 40%, transparent);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--brand) 60%, transparent);
 }
 
 @media (prefers-reduced-motion: reduce) {
