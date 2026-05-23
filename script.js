@@ -14,6 +14,13 @@ const SITES = [
     tagsKeys: ["chinese_english", "epub"],
   },
   {
+    url: "https://tstrs.me/",
+    category: "ebook-downloads",
+    titleKey: "saltyleos_bookshelf",
+    descKey: "saltyleos_bookshelf",
+    tagsKeys: ["chinese_reading", "listening"],
+  },
+  {
     url: "https://liber3.eth.limo/#/",
     category: "ebook-downloads",
     titleKey: "liber3",
@@ -411,6 +418,7 @@ const TRANSLATIONS = {
   siteTitle: {
     zlibrary: { zh: "Z-Library", en: "Z-Library" },
     annas_archive: { zh: "安娜的档案", en: "Anna's Archive" },
+    saltyleos_bookshelf: { zh: "SaltyLeo 的书架", en: "SaltyLeo's Bookshelf" },
     liber3: { zh: "Liber3", en: "Liber3" },
     xiaolipan: { zh: "小力盘搜索", en: "Xiaolipan Search" },
     "24hbook": { zh: "24h 搜书", en: "24h Book Search" },
@@ -471,6 +479,7 @@ const TRANSLATIONS = {
   siteDesc: {
     zlibrary: { zh: "海量电子书，支持多种格式下载。", en: "Large ebook collection with multiple formats." },
     annas_archive: { zh: "人类历史上最大的完全开放的图书馆。", en: "The largest fully open library in human history." },
+    saltyleos_bookshelf: { zh: "收录 200 多万电子书。", en: "Collection of over 2 million ebooks." },
     liber3: { zh: "海量电子书。", en: "Massive ebook library." },
     xiaolipan: { zh: "海量电子书，支持多种格式下载。", en: "Large ebook collection with multiple formats." },
     "24hbook": { zh: "海量电子书。", en: "Massive ebook collection." },
@@ -530,6 +539,7 @@ const TRANSLATIONS = {
   },
   siteTags: {
     chinese_english: { zh: "中英文", en: "Chinese/English" },
+    chinese_reading: { zh: "读书", en: "Reading" },
     epub_mobi_azw3_pdf: { zh: "EPUB/MOBI/AZW3/PDF", en: "EPUB/MOBI/AZW3/PDF" },
     epub: { zh: "EPUB", en: "EPUB" },
     epub_pdf: { zh: "EPUB/PDF", en: "EPUB/PDF" },
