@@ -12,7 +12,7 @@
     </a>
     <nav class="header-nav" aria-label="主导航">
       <a href="/" class="{{ if .IsHome }}active{{ end }}">首页</a>
-      <a href="/category/ebook-downloads/" class="{{ if eq .Section "categories" }}active{{ end }}">分类</a>
+      <a href="/categories/" class="{{ if eq .Section "categories" }}active{{ end }}">分类</a>
       <a href="/blog/" class="{{ if eq .Section "blog" }}active{{ end }}">文章</a>
       <a href="/about/" class="{{ if eq .Title "关于本站" }}active{{ end }}">关于</a>
       <a href="/faq/" class="{{ if eq .Title "常见问题" }}active{{ end }}">FAQ</a>

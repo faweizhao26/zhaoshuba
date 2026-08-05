@@ -51,4 +51,4 @@ Calibre 首次启动会问"书库位置"，选一个磁盘空间充足的目录�
 
 Calibre 的核心价值是"把书库变成你自己的图书馆"：统一格式、自动元数据、一键传书。花一个周末把散落的电子书整理进 Calibre，之后找书、换设备、备份都会轻松很多。
 
-本站[阅读工具分类](/category/reading-tools/)还收录了 [Sigil](/sites/sigil/)（EPUB 编辑）、[Pandoc](/sites/pandoc/)（命令行转换）等工具，按需选用。
+本站[阅读工具分类](/categories/reading-tools/)还收录了 [Sigil](/sites/sigil/)（EPUB 编辑）、[Pandoc](/sites/pandoc/)（命令行转换）等工具，按需选用。
