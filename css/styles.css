@@ -167,7 +167,8 @@ a:hover { text-decoration: underline; }
 .breadcrumb a { color: var(--text-soft); }
 .breadcrumb a:hover { color: var(--accent); }
 .breadcrumb .crumb-current { color: var(--text-faint); }
-.single-hero { padding: 26px 30px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--card); margin-bottom: 26px; }
+.single-hero { padding: 30px 34px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--card); margin-bottom: 26px; }
+.single-hero:not(.site-hero) { max-width: 860px; margin-left: auto; margin-right: auto; }
 .site-hero { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; flex-wrap: wrap; }
 .single-title { font-size: 1.8rem; margin-bottom: 10px; }
 .single-desc { color: var(--text-soft); font-size: 1.02rem; }
