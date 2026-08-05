@@ -1,0 +1,9 @@
+name = "zhaoshuba"
+license = "MIT"
+min_version = "0.120.0"
+
+[author]
+  name = "Felix"
+
+[description]
+  description = "找书吧自用轻量主题：深色科技风，站点卡片 + 分类落地页 + 结构化数据。"

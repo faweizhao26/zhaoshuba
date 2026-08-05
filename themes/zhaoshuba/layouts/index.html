@@ -1,0 +1,97 @@
+{{ define "main" }}
+{{ $sites := where .Site.RegularPages "Section" "sites" }}
+{{ $cats := .Site.Taxonomies.categories }}
+
+<section class="hero">
+  <div class="hero-title">
+    <span class="badge">ZHAOSHUBA</span>
+    <h1>找书吧</h1>
+    <p class="hero-subtitle">正版电子书 · 在线阅读 · 数字古籍 · 学术文献 · 阅读工具 一站式导航</p>
+  </div>
+  <div class="hero-search">
+    <label class="search-box" aria-label="搜索站点">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.5 3a7.5 7.5 0 0 1 5.997 11.998l4.252 4.252-1.5 1.5-4.252-4.252A7.5 7.5 0 1 1 10.5 3m0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11"/></svg>
+      <input id="siteSearch" type="search" placeholder="搜索站点名称、简介、分类（如：公版书、论文、古籍）" autocomplete="off" />
+    </label>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><span>{{ $sites | len }}</span><small>收录站点</small></div>
+    <div class="stat"><span>{{ $cats | len }}</span><small>分类</small></div>
+    <div class="stat"><span>{{ len (where .Site.RegularPages "Section" "blog") }}</span><small>原创文章</small></div>
+  </div>
+  <p class="hero-note">本站只收录正版、公版与合法来源的阅读资源，不收录任何盗版电子书站点。</p>
+</section>
+
+<nav class="category-bar" aria-label="分类导航">
+  {{ range $name := site.Params.categoryOrder }}
+  {{ with site.GetPage (printf "/categories/%s" $name) }}
+  <a href="#cat-{{ $name }}" class="category-pill">{{ .Title }} <em>{{ len .Pages }}</em></a>
+  {{ end }}
+  {{ end }}
+</nav>
+
+<main class="sections-root">
+  {{ range $name := site.Params.categoryOrder }}
+  {{ with site.GetPage (printf "/categories/%s" $name) }}
+  {{ $cat := . }}
+  <section class="category-section" id="cat-{{ $name }}">
+    <div class="category-head">
+      <h2 class="category-title">
+        <span class="category-icon">{{ $cat.Params.icon | default "📚" }}</span>
+        {{ $cat.Title }}
+      </h2>
+      {{ with $cat.Description }}<p class="category-desc">{{ . }}</p>{{ end }}
+      <a class="category-more" href="{{ $cat.Permalink }}">查看分类详情 →</a>
+    </div>
+    <div class="site-grid">
+      {{ range $cat.Pages.ByWeight }}
+      {{ partial "site-card.html" . }}
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
+  {{ end }}
+</main>
+
+<section class="home-extra">
+  <div class="home-extra-col">
+    <h2>📌 阅读指南</h2>
+    <ul class="article-list">
+      {{ range first 3 (where .Site.RegularPages "Section" "blog") }}
+      <li><a href="{{ .Permalink }}">{{ .Title }}</a><span class="article-date">{{ .Date.Format "2006-01-02" }}</span></li>
+      {{ end }}
+    </ul>
+  </div>
+  <div class="home-extra-col">
+    <h2>🤔 常见问题</h2>
+    <ul class="article-list">
+      {{ $faq := site.GetPage "/faq" }}
+      {{ if $faq }}
+      {{ range first 3 $faq.Params.questions }}
+      <li><a href="/faq/#q{{ .id }}">{{ .q }}</a></li>
+      {{ end }}
+      {{ end }}
+    </ul>
+  </div>
+</section>
+
+<script>
+  const input = document.getElementById("siteSearch");
+  const cards = document.querySelectorAll(".site-card");
+  input.addEventListener("input", () => {
+    const q = input.value.trim().toLowerCase();
+    let shown = 0;
+    cards.forEach(card => {
+      const hit = !q || card.dataset.search.includes(q);
+      card.style.display = hit ? "" : "none";
+      if (hit) shown++;
+    });
+    document.querySelectorAll(".category-section").forEach(sec => {
+      const any = [...sec.querySelectorAll(".site-card")].some(c => c.style.display !== "none");
+      sec.style.display = any ? "" : "none";
+    });
+    document.getElementById("searchCount").textContent = shown;
+    document.getElementById("searchHint").style.display = q ? "block" : "none";
+  });
+</script>
+{{ end }}

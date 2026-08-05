@@ -1,0 +1,70 @@
+{{ define "main" }}
+<article class="single-page">
+  <nav class="breadcrumb" aria-label="面包屑">
+    <a href="/">首页</a>
+    {{ if eq .Section "sites" }}
+    <span>/</span>
+    {{ with .Params.categories }}{{ $catPage := site.GetPage (printf "/categories/%s" (index . 0)) }}{{ if $catPage }}<a href="/categories/{{ index . 0 }}/">{{ $catPage.Title }}</a>{{ end }}{{ end }}
+    {{ else if eq .Section "blog" }}
+    <span>/</span><a href="/blog/">文章</a>
+    {{ end }}
+    <span>/</span><span class="crumb-current">{{ .Title }}</span>
+  </nav>
+
+  {{ if eq .Section "sites" }}
+  <header class="single-hero site-hero">
+    <div class="single-hero-main">
+      <h1 class="single-title">{{ .Title }}</h1>
+      {{ with .Description }}<p class="single-desc">{{ . }}</p>{{ end }}
+      <div class="site-meta">
+        {{ with .Params.categories }}{{ range . }}{{ $catPage := site.GetPage (printf "/categories/%s" .) }}{{ if $catPage }}<a class="tag tag-link" href="/categories/{{ . }}/">{{ $catPage.Title }}</a>{{ end }}{{ end }}{{ end }}
+        {{ with .Params.tags }}{{ range . }}<span class="tag">{{ . }}</span>{{ end }}{{ end }}
+        <span class="tag tag-muted">收录于 {{ .Date.Format "2006-01-02" }}</span>
+      </div>
+    </div>
+    <div class="single-hero-actions">
+      <a class="action-btn action-primary" href="{{ .Params.external_url }}" target="_blank" rel="noopener nofollow">访问网站 ↗</a>
+    </div>
+  </header>
+
+  <div class="single-body">
+    <div class="single-content">
+      {{ .Content }}
+    </div>
+    <aside class="single-aside">
+      <div class="aside-card">
+        <h3>快速信息</h3>
+        <dl class="meta-list">
+          <dt>类型</dt><dd>{{ with .Params.categories }}{{ range . }}{{ $catPage := site.GetPage (printf "/categories/%s" .) }}{{ if $catPage }}{{ $catPage.Title }}{{ end }}{{ end }}{{ end }}</dd>
+          <dt>官网</dt><dd><a href="{{ .Params.external_url }}" target="_blank" rel="noopener nofollow">{{ .Params.external_domain }}</a></dd>
+          <dt>语言</dt><dd>{{ .Params.language }}</dd>
+          <dt>收费</dt><dd>{{ .Params.pricing }}</dd>
+        </dl>
+        <p class="aside-note">本站只做信息导航，不存储任何书籍文件。访问第三方站点请自行判断内容与安全性。</p>
+      </div>
+      <div class="aside-card">
+        <h3>同类推荐</h3>
+        <ul class="related-list">
+          {{ with .Params.categories }}{{ $cat := index . 0 }}
+          {{ range first 5 (where (where site.RegularPages "Section" "sites") "Params.categories" "intersect" (slice $cat)) }}
+          {{ if ne .Permalink $.Permalink }}<li><a href="{{ .Permalink }}">{{ .Title }}</a></li>{{ end }}
+          {{ end }}
+          {{ end }}
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  {{ else }}
+  <header class="single-hero">
+    <h1 class="single-title">{{ .Title }}</h1>
+    {{ with .Description }}<p class="single-desc">{{ . }}</p>{{ end }}
+  </header>
+  <div class="single-body">
+    <div class="single-content single-content-full">
+      {{ .Content }}
+    </div>
+  </div>
+  {{ end }}
+</article>
+{{ end }}

@@ -1,0 +1,57 @@
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="brand footer-brand">
+        <span class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false">
+            <path d="M4.5 5.5c2-1 5-1 7 0v13c-2-1-5-1-7 0z" />
+            <path d="M19.5 5.5c-2-1-5-1-7 0v13c2-1 5-1 7 0z" />
+            <path d="M12 5.5v13" />
+          </svg>
+        </span>
+        <span>找书吧</span>
+      </div>
+      <p class="footer-desc">只收录正版、公版与合法来源的电子书、阅读与学习资源导航。不存储、不分发任何受版权保护的书籍文件。</p>
+    </div>
+    <div class="footer-col">
+      <h3 class="footer-title">导航</h3>
+      <ul class="footer-links">
+        <li><a href="/">首页</a></li>
+        <li><a href="/category/ebook-downloads/">分类索引</a></li>
+        <li><a href="/blog/">原创文章</a></li>
+        <li><a href="/faq/">常见问题</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3 class="footer-title">站务</h3>
+      <ul class="footer-links">
+        <li><a href="/about/">关于本站</a></li>
+        <li><a href="/privacy/">隐私政策</a></li>
+        <li><a href="mailto:felix080926@gmail.com">联系站长</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Felix · 找书吧 zhaoshuba.top</span>
+  </div>
+</footer>
+<button id="backToTop" class="back-to-top" aria-label="返回顶部" title="返回顶部">↑</button>
+<script>
+  const themeToggle = document.getElementById("themeToggle");
+  function syncThemeBtn() {
+    const dark = document.documentElement.dataset.theme !== "light";
+    themeToggle.textContent = dark ? "☀️ 浅色" : "🌙 深色";
+  }
+  syncThemeBtn();
+  themeToggle.addEventListener("click", () => {
+    const next = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+    document.documentElement.dataset.theme = next;
+    localStorage.setItem("zhaoshuba_theme", next);
+    syncThemeBtn();
+  });
+  const btt = document.getElementById("backToTop");
+  window.addEventListener("scroll", () => {
+    btt.classList.toggle("show", window.scrollY > 400);
+  });
+  btt.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+</script>

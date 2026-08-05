@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  {{ partial "head.html" . }}
+</head>
+<body>
+  <div class="bg-circle bg-circle-1"></div>
+  <div class="bg-circle bg-circle-2"></div>
+  <div class="container">
+    {{ partial "header.html" . }}
+    <main>
+      {{ block "main" . }}{{ end }}
+    </main>
+    {{ partial "footer.html" . }}
+  </div>
+  {{ if .Site.Params.umamiId }}
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="{{ .Site.Params.umamiId }}"></script>
+  {{ end }}
+  {{ if .Site.Params.adsenseClient }}
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ .Site.Params.adsenseClient }}" crossorigin="anonymous"></script>
+  {{ end }}
+  <script>
+    const savedTheme = localStorage.getItem("zhaoshuba_theme");
+    if (savedTheme === "light") document.documentElement.dataset.theme = "light";
+  </script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+# Hugo 构建产物
+public/
+.hugo_build.lock
+resources/
+
+# 系统与编辑器
+.DS_Store
+*.swp
+.idea/
+.vscode/
+
+# 临时
+scripts/__pycache__/

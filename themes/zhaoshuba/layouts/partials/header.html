@@ -1,0 +1,25 @@
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="/" aria-label="找书吧首页">
+      <span class="logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" focusable="false">
+          <path d="M4.5 5.5c2-1 5-1 7 0v13c-2-1-5-1-7 0z" />
+          <path d="M19.5 5.5c-2-1-5-1-7 0v13c2-1 5-1 7 0z" />
+          <path d="M12 5.5v13" />
+        </svg>
+      </span>
+      <span class="brand-name">找书吧</span>
+    </a>
+    <nav class="header-nav" aria-label="主导航">
+      <a href="/" class="{{ if .IsHome }}active{{ end }}">首页</a>
+      <a href="/category/ebook-downloads/" class="{{ if eq .Section "categories" }}active{{ end }}">分类</a>
+      <a href="/blog/" class="{{ if eq .Section "blog" }}active{{ end }}">文章</a>
+      <a href="/about/" class="{{ if eq .Title "关于本站" }}active{{ end }}">关于</a>
+      <a href="/faq/" class="{{ if eq .Title "常见问题" }}active{{ end }}">FAQ</a>
+    </nav>
+    <div class="header-tools">
+      <a class="theme-btn" id="themeToggle" href="javascript:void(0)" role="button" aria-label="切换主题">🌙 深色</a>
+      <a class="action-btn" href="mailto:felix080926@gmail.com?subject=%E6%89%BE%E4%B9%A6%E5%90%A7%20%E7%AB%99%E7%82%B9%E6%8E%A8%E8%8D%90">提交站点</a>
+    </div>
+  </div>
+</header>

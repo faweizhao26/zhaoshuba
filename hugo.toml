@@ -1,0 +1,29 @@
+baseURL = "https://zhaoshuba.top/"
+locale = "zh-CN"
+title = "找书吧 | 正版电子书与阅读工具导航"
+theme = "zhaoshuba"
+enableRobotsTXT = false  # 使用 static/robots.txt
+enableEmoji = true
+
+[params]
+  description = "找书吧：收录正版电子书、在线阅读、书单推荐、数字古籍、学术文献与阅读工具类网站的导航站。只收录合法来源，帮你更快找到值得读的书。"
+  author = "Felix"
+  authorEmail = "felix080926@gmail.com"
+  siteName = "找书吧"
+  umamiId = "95f372eb-aaac-41ef-b1ee-f5a43b6bf257"
+  adsenseClient = "ca-pub-6049122905069243"
+  keywords = ["电子书", "正版电子书", "公版书", "在线阅读", "书单推荐", "数字古籍", "学术文献", "阅读工具", "有声书", "读书导航"]
+  categoryOrder = ["ebook-downloads", "online-reading", "book-recommendations", "magazines-comics", "academic-journals", "classical-texts", "audiobooks", "reading-tools"]
+
+[taxonomies]
+  category = "categories"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[outputs]
+  home = ["HTML"]
+  section = ["HTML"]
+  page = ["HTML"]

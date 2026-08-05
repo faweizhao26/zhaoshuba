@@ -1,0 +1,15 @@
+<article class="site-card" data-search="{{ lower (printf "%s %s %s %s" .Title .Description (delimit .Params.tags " ") .Params.category_name) }}">
+  <div class="site-card-top">
+    <h3 class="site-card-title"><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+    {{ with .Params.external_url }}
+    <a class="site-card-link" href="{{ . }}" target="_blank" rel="noopener nofollow" aria-label="访问{{ $.Title }}">↗</a>
+    {{ end }}
+  </div>
+  {{ with .Description }}<p class="site-card-desc">{{ . }}</p>{{ end }}
+  {{ with .Params.tags }}
+  <div class="site-card-tags">
+    {{ range . }}<span class="tag">{{ . }}</span>{{ end }}
+  </div>
+  {{ end }}
+  <a class="site-card-review" href="{{ $.Permalink }}">查看介绍与使用指南 →</a>
+</article>

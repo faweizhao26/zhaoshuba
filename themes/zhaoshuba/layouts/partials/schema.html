@@ -1,0 +1,95 @@
+{{ if .IsHome }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "{{ .Site.Params.siteName }}",
+  "alternateName": "找书吧",
+  "url": "{{ .Site.BaseURL }}",
+  "description": "{{ .Site.Params.description }}",
+  "inLanguage": "zh-CN",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{ .Site.BaseURL }}search/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "找书吧收录站点",
+  "itemListElement": [
+    {{ $sites := where .Site.RegularPages "Section" "sites" }}
+    {{ range $i, $p := $sites }}
+    {
+      "@type": "ListItem",
+      "position": {{ add $i 1 }},
+      "name": "{{ $p.Title }}",
+      "url": "{{ $p.Permalink }}"
+    }{{ if lt (add $i 1) (len $sites) }},{{ end }}
+    {{ end }}
+  ]
+}
+</script>
+{{ else if eq .Section "sites" }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "{{ .Title }} - {{ .Site.Params.siteName }}",
+  "url": "{{ .Permalink }}",
+  "description": "{{ .Description }}",
+  "inLanguage": "zh-CN",
+  "isPartOf": { "@type": "WebSite", "name": "{{ .Site.Params.siteName }}", "url": "{{ .Site.BaseURL }}" },
+  "primaryImageOfPage": "{{ .Site.BaseURL }}favicon.svg",
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "首页", "item": "{{ .Site.BaseURL }}" },
+      {{ with .Params.categories }}{{ $catPath := printf "/categories/%s" (index . 0) }}{{ $catPage := site.GetPage $catPath }}{{ if $catPage }}{
+        "@type": "ListItem", "position": 2, "name": "{{ $catPage.Title }}", "item": "{{ $catPage.Permalink }}"
+      },{{ end }}{{ end }}
+      { "@type": "ListItem", "position": 3, "name": "{{ .Title }}", "item": "{{ .Permalink }}" }
+    ]
+  }
+}
+</script>
+{{ else if eq .Kind "term" }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "{{ .Title }} - {{ .Site.Params.siteName }}",
+  "url": "{{ .Permalink }}",
+  "description": "{{ .Description }}",
+  "inLanguage": "zh-CN",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": [
+      {{ $list := .Pages }}
+      {{ range $i, $p := $list }}
+      {
+        "@type": "ListItem",
+        "position": {{ add $i 1 }},
+        "name": "{{ $p.Title }}",
+        "url": "{{ $p.Permalink }}"
+      }{{ if lt (add $i 1) (len $list) }},{{ end }}
+      {{ end }}
+    ]
+  }
+}
+</script>
+{{ else }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "{{ .Title }} - {{ .Site.Params.siteName }}",
+  "url": "{{ .Permalink }}",
+  "description": "{{ .Description }}",
+  "inLanguage": "zh-CN"
+}
+</script>
+{{ end }}

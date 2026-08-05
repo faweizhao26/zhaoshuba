@@ -1,0 +1,19 @@
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}｜{{ .Site.Params.siteName }}{{ end }}</title>
+<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Summary }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}{{ end }}" />
+{{ with .Site.Params.keywords }}<meta name="keywords" content="{{ delimit . ", " }}" />{{ end }}
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="{{ .Permalink }}" />
+<meta property="og:type" content="{{ if .IsHome }}website{{ else }}website{{ end }}" />
+<meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}｜{{ .Site.Params.siteName }}{{ end }}" />
+<meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
+<meta property="og:url" content="{{ .Permalink }}" />
+<meta property="og:site_name" content="{{ .Site.Params.siteName }}" />
+<meta property="og:locale" content="zh_CN" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="/css/styles.css?v=20260805" />
+{{ if .Params.external_url }}
+<link rel="stylesheet" href="/css/site.css?v=20260805" />
+{{ end }}
+{{ partial "schema.html" . }}

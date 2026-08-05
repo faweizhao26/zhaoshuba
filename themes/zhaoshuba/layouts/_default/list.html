@@ -1,0 +1,58 @@
+{{ define "main" }}
+<div class="list-page">
+  <header class="list-hero">
+    {{ if eq .Kind "term" }}
+    <span class="badge">{{ .Params.icon | default "📚" }}</span>
+    <h1 class="list-title">{{ .Title }}</h1>
+    {{ with .Description }}<p class="list-desc">{{ . }}</p>{{ end }}
+    {{ else if eq .Kind "taxonomy" }}
+    <span class="badge">CATEGORIES</span>
+    <h1 class="list-title">全部分类</h1>
+    <p class="list-desc">找书吧按 8 个分类组织收录站点，点进分类查看站点介绍与评测。</p>
+    {{ else if eq .Section "blog" }}
+    <span class="badge">BLOG</span>
+    <h1 class="list-title">原创文章</h1>
+    <p class="list-desc">阅读指南、资源评测与工具使用教程，由站长原创整理。</p>
+    {{ end }}
+  </header>
+
+  {{ if eq .Kind "taxonomy" }}
+  <div class="cat-index-grid">
+    {{ range .Pages }}
+    <a class="cat-index-card" href="{{ .Permalink }}">
+      <span class="cat-index-icon">{{ .Params.icon | default "📚" }}</span>
+      <span class="cat-index-name">{{ .Title }}</span>
+      <span class="cat-index-count">{{ len .Pages }} 个站点</span>
+      {{ with .Description }}<span class="cat-index-desc">{{ . }}</span>{{ end }}
+    </a>
+    {{ end }}
+  </div>
+
+  {{ else if eq .Kind "term" }}
+  <div class="category-intro single-content">
+    {{ .Content }}
+  </div>
+  <div class="site-grid">
+    {{ range .Pages.ByWeight }}
+    {{ partial "site-card.html" . }}
+    {{ end }}
+  </div>
+
+  {{ else if eq .Section "blog" }}
+  <div class="blog-list">
+    {{ range .Pages.ByDate.Reverse }}
+    <article class="blog-item">
+      <h2 class="blog-item-title"><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+      <p class="blog-item-meta">{{ .Date.Format "2006年1月2日" }}</p>
+      {{ with .Description }}<p class="blog-item-desc">{{ . }}</p>{{ end }}
+    </article>
+    {{ end }}
+  </div>
+
+  {{ else }}
+  <div class="single-content">
+    {{ .Content }}
+  </div>
+  {{ end }}
+</div>
+{{ end }}
