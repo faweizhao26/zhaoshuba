@@ -176,7 +176,7 @@ a:hover { text-decoration: underline; }
 .single-hero-actions { display: flex; align-items: center; gap: 12px; }
 .single-body { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 26px; align-items: start; }
 .single-content { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 30px 34px; }
-.single-content-full { max-width: 860px; }
+.single-content-full { max-width: 860px; margin-left: auto; margin-right: auto; }
 .single-content h2 { font-size: 1.35rem; margin: 28px 0 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
 .single-content h3 { font-size: 1.12rem; margin: 22px 0 10px; }
 .single-content p { margin-bottom: 14px; color: var(--text); }
