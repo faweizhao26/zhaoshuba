@@ -68,7 +68,7 @@
       {{ $faq := site.GetPage "/faq" }}
       {{ if $faq }}
       {{ range first 3 $faq.Params.questions }}
-      <li><a href="/faq/#q{{ .id }}">{{ .q }}</a></li>
+      <li><a href="/faq/">{{ .q }}</a></li>
       {{ end }}
       {{ end }}
     </ul>

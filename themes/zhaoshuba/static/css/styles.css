@@ -167,7 +167,8 @@ a:hover { text-decoration: underline; }
 .breadcrumb a { color: var(--text-soft); }
 .breadcrumb a:hover { color: var(--accent); }
 .breadcrumb .crumb-current { color: var(--text-faint); }
-.single-hero { padding: 26px 30px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--card); margin-bottom: 26px; }
+.single-hero { padding: 30px 34px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--card); margin-bottom: 26px; }
+.single-hero:not(.site-hero) { max-width: 860px; margin-left: auto; margin-right: auto; }
 .site-hero { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; flex-wrap: wrap; }
 .single-title { font-size: 1.8rem; margin-bottom: 10px; }
 .single-desc { color: var(--text-soft); font-size: 1.02rem; }
@@ -175,7 +176,7 @@ a:hover { text-decoration: underline; }
 .single-hero-actions { display: flex; align-items: center; gap: 12px; }
 .single-body { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 26px; align-items: start; }
 .single-content { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 30px 34px; }
-.single-content-full { max-width: 860px; }
+.single-content-full { max-width: 860px; margin-left: auto; margin-right: auto; }
 .single-content h2 { font-size: 1.35rem; margin: 28px 0 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
 .single-content h3 { font-size: 1.12rem; margin: 22px 0 10px; }
 .single-content p { margin-bottom: 14px; color: var(--text); }
@@ -243,7 +244,7 @@ a:hover { text-decoration: underline; }
   border-top: 1px solid var(--border); margin-top: 20px; padding: 40px 0 24px;
   background: var(--bg-soft);
 }
-.footer-inner { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 30px; }
+.footer-inner { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 30px; padding: 0 24px; }
 .footer-brand { font-weight: 700; font-size: 1.05rem; color: var(--text); margin-bottom: 10px; }
 .footer-desc { color: var(--text-faint); font-size: 0.88rem; max-width: 380px; }
 .footer-title { font-size: 0.95rem; color: var(--text); margin-bottom: 12px; }

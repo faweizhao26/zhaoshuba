@@ -60,10 +60,8 @@
     <h1 class="single-title">{{ .Title }}</h1>
     {{ with .Description }}<p class="single-desc">{{ . }}</p>{{ end }}
   </header>
-  <div class="single-body">
-    <div class="single-content single-content-full">
-      {{ .Content }}
-    </div>
+  <div class="single-content single-content-full">
+    {{ .Content }}
   </div>
   {{ end }}
 </article>
