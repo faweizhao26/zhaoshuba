@@ -1,7 +1,7 @@
 {{- /* 打赏弹窗：任意页面通过 [data-donate] 触发 */ -}}
 <div class="donate-modal" id="donateModal" hidden>
   <div class="donate-backdrop" data-donate-close></div>
-  <div class="donate-dialog" role="dialog" aria-modal="true" aria-labelledby="donateTitle">
+  <div class="donate-dialog" role="dialog" aria-modal="true" aria-labelledby="donateTitle" tabindex="-1">
     <button class="donate-close" type="button" data-donate-close aria-label="关闭打赏窗口">×</button>
     <h3 id="donateTitle">☕ 请我喝杯咖啡</h3>
     <p class="donate-lead">如果找书吧对你有帮助，你也开心的话，可以赏我一杯咖啡，谢谢！</p>
@@ -19,8 +19,8 @@
     function openModal() {
       modal.hidden = false;
       document.body.style.overflow = "hidden";
-      var btn = modal.querySelector(".donate-close");
-      if (btn) btn.focus();
+      var dialog = modal.querySelector(".donate-dialog");
+      if (dialog) dialog.focus();
     }
     function closeModal() {
       modal.hidden = true;

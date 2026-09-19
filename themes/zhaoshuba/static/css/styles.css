@@ -268,6 +268,7 @@ a:hover { text-decoration: underline; }
   background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius);
   padding: 26px 26px 22px; box-shadow: var(--shadow);
 }
+.donate-dialog:focus { outline: none; }
 .donate-close {
   position: absolute; top: 10px; right: 12px; width: 30px; height: 30px; border-radius: 8px;
   border: 1px solid var(--border); background: var(--card); color: var(--text-soft);
