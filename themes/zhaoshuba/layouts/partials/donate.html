@@ -1,0 +1,42 @@
+{{- /* 打赏弹窗：任意页面通过 [data-donate] 触发 */ -}}
+<div class="donate-modal" id="donateModal" hidden>
+  <div class="donate-backdrop" data-donate-close></div>
+  <div class="donate-dialog" role="dialog" aria-modal="true" aria-labelledby="donateTitle">
+    <button class="donate-close" type="button" data-donate-close aria-label="关闭打赏窗口">×</button>
+    <h3 id="donateTitle">☕ 请我喝杯咖啡</h3>
+    <p class="donate-lead">如果找书吧对你有帮助，你也开心的话，可以赏我一杯咖啡，谢谢！</p>
+    <div class="donate-qr">
+      <img src="/img/donate-wechat.png" alt="微信赞赏码" width="240" loading="lazy" />
+    </div>
+    <p class="donate-tip">微信扫一扫 · 金额随心 · 不打赏也照样用</p>
+    <p class="donate-note">本站不接付费收录，赞赏只用于抵服务器与域名开销。</p>
+  </div>
+</div>
+<script>
+  (function () {
+    var modal = document.getElementById("donateModal");
+    if (!modal) return;
+    function openModal() {
+      modal.hidden = false;
+      document.body.style.overflow = "hidden";
+      var btn = modal.querySelector(".donate-close");
+      if (btn) btn.focus();
+    }
+    function closeModal() {
+      modal.hidden = true;
+      document.body.style.overflow = "";
+    }
+    document.querySelectorAll("[data-donate]").forEach(function (el) {
+      el.addEventListener("click", function (e) {
+        e.preventDefault();
+        openModal();
+      });
+    });
+    modal.querySelectorAll("[data-donate-close]").forEach(function (el) {
+      el.addEventListener("click", closeModal);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !modal.hidden) closeModal();
+    });
+  })();
+</script>

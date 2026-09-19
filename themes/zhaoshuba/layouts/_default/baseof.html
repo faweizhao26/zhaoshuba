@@ -20,5 +20,6 @@
     const savedTheme = localStorage.getItem("zhaoshuba_theme");
     if (savedTheme === "light") document.documentElement.dataset.theme = "light";
   </script>
+  {{ partial "donate.html" . }}
 </body>
 </html>
