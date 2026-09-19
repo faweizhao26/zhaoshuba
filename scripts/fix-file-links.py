@@ -1,56 +1,70 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""把 Hugo 预览版中所有站内链接改写为 file:// 可直开的相对路径（指向 index.html 文件）。
+"""把 Hugo 预览版里的站内链接 / 资源引用改写成 file:// 可直开的相对路径。
+
 用法: python3 fix-file-links.py <preview_root>
+
+规则（href= 与 src= 都处理）：
+- 站内页面链接 → 指向真实存在的 <dir>/index.html 文件
+- 站内资源（css/svg/png/...） → 改成相对路径，并丢掉 ?v= 查询串
+  （file:// 下带 query 会当成文件名的一部分，导致 404）
+- http(s)/mailto/#/javascript:/data: 一律不动
 """
 import os
 import re
 import sys
 
-root = sys.argv[1]
+root = os.path.abspath(sys.argv[1])
 
-def fix_href(href, curdir):
-    if not href:
+ATTR_RE = re.compile(r'\b(href|src)=(["\'])([^"\']*)\2')
+
+
+def resolve(url, curdir):
+    if not url or url.startswith(("http://", "https://", "//", "mailto:", "tel:", "#", "javascript:", "data:")):
         return None
-    if href.startswith(("http://", "https://", "mailto:", "#", "javascript:", "tel:")):
-        return None
-    if re.search(r"\.(css|js|svg|png|jpg|jpeg|ico|webp|xml|json|txt|zip|pdf)(\?.*)?$", href):
-        return None
-    base = href.split("?")[0].split("#")[0]
-    if not base:
+    path = url.split("?")[0].split("#")[0]
+    if path == "":
         return None
 
-    # 相对当前页面文件所在的目录
-    if base.startswith("/"):
-        # 绝对站内路径（相对站点根）
-        rel = base.lstrip("/")
-    elif base.startswith("./"):
-        rel = base[2:]
-    elif base.startswith("../"):
-        rel = base
+    here = os.path.join(root, curdir)
+    if path.startswith("/"):
+        # 站点根路径（相对 preview 根）
+        candidates = [os.path.normpath(os.path.join(root, path.lstrip("/")))]
+    elif path.startswith("./") or path.startswith("../"):
+        # 先按「相对当前页面目录」解释，再回退到「相对站点根」
+        # （Hugo relativeURLs 生成的 ./blog/x.html 实为相对站点根）
+        candidates = [
+            os.path.normpath(os.path.join(here, path)),
+            os.path.normpath(os.path.join(root, path)),
+        ]
     else:
         return None
 
-    target = os.path.normpath(os.path.join(curdir, rel))
-    target_abs = os.path.join(root, target)
+    for target in candidates:
+        if not (target == root or target.startswith(root + os.sep)):
+            continue
+        if os.path.isfile(target):
+            fixed = os.path.relpath(target, here)
+        elif os.path.isdir(target) and os.path.exists(os.path.join(target, "index.html")):
+            fixed = os.path.relpath(os.path.join(target, "index.html"), here)
+        elif os.path.isfile(target + ".html"):
+            # uglyURLs 预览版：/about/ 实际是 about.html
+            fixed = os.path.relpath(target + ".html", here)
+        else:
+            continue
+        fixed = fixed.replace(os.sep, "/")
+        if not fixed.startswith("."):
+            fixed = "./" + fixed
+        return fixed
+    return None
 
-    if os.path.isdir(target_abs) and os.path.exists(os.path.join(target_abs, "index.html")):
-        fixed = os.path.join(target, "index.html")
-    elif os.path.isfile(target_abs):
-        fixed = target
-    else:
-        return None
 
-    # 从当前 HTML 文件所在目录算相对路径
-    relpath = os.path.relpath(fixed, curdir).replace(os.sep, "/")
-    if not relpath.startswith("."):
-        relpath = "./" + relpath
-    return relpath
+changed_files = 0
+changed_refs = 0
 
-count = 0
 
-def fix_dir(root):
-    global count
+def walk():
+    global changed_files, changed_refs
     for dirpath, _dirs, files in os.walk(root):
         for fn in files:
             if not fn.endswith(".html"):
@@ -59,23 +73,24 @@ def fix_dir(root):
             curdir = os.path.relpath(dirpath, root)
             with open(path, encoding="utf-8") as f:
                 html = f.read()
-            changed = False
+
+            stats = {"n": 0}
 
             def repl(m):
-                nonlocal changed
-                href = m.group(1)
-                fixed = fix_href(href, curdir)
+                fixed = resolve(m.group(3), curdir)
                 if fixed:
-                    changed = True
-                    return f'href="{fixed}"'
+                    stats["n"] += 1
+                    return "%s=%s%s%s" % (m.group(1), m.group(2), fixed, m.group(2))
                 return m.group(0)
 
-            new = re.sub(r'href="([^"]*)"', repl, html)
-            if changed:
+            new = ATTR_RE.sub(repl, html)
+            if stats["n"]:
                 with open(path, "w", encoding="utf-8") as f:
                     f.write(new)
-                count += 1
-                print(f"✓ {os.path.relpath(path, root)}")
+                changed_files += 1
+                changed_refs += stats["n"]
+                print("✓ %s (%d 处)" % (os.path.relpath(path, root), stats["n"]))
 
-fix_dir(root)
-print(f"\n共修复 {count} 个页面")
+
+walk()
+print("\n共修复 %d 个页面 / %d 处引用" % (changed_files, changed_refs))
