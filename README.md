@@ -4,7 +4,7 @@
 
 ## 项目结构
 
-- `content/sites/` — 73 个收录站点页（含原创介绍与使用提示）
+- `content/sites/` — 74 个收录站点页（含原创介绍与使用提示）
 - `content/categories/` — 8 个分类落地页
 - `content/blog/` — 原创文章
 - `content/about.md` `content/faq.md` `content/privacy.md` — 站务页
